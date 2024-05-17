@@ -2,7 +2,7 @@ package chapter5;
 
 public class Calc {
 
-	
+	int abc;
 	
 	public void add(int a, int b) {
 		System.out.println( a + " + " + b + " = " + (a + b) );
