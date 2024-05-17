@@ -2,8 +2,8 @@ package stuworks.y20240517;
 
 public class MyDateKang {
 	private int year;
-	private int day;
 	private int month;
+	private int day;
 
 	private boolean isValid = true;
 
@@ -66,19 +66,16 @@ public class MyDateKang {
 			}
 		}
 	}
+	
 	public String isValid() {
-		if (isValid) {
-			return "유효한 날짜";
-		} else {
-			return "유효하지 않은 날짜";
-		}
+		return isValid ? "유효한 날짜" : "유효하지 않은 날짜";
 	}
+	
 	public static void main(String[] args) {
 		MyDateKang d1 = new MyDateKang(2000, 2, 30);
 		System.out.println(d1.isValid());
 		MyDateKang d2 = new MyDateKang(2006, 10, 2);
-		System.out.println(d2.isValid());
-		
+		System.out.println(d2.isValid());	
 	}
 }
 
