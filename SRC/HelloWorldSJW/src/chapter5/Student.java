@@ -15,6 +15,7 @@ public class Student {
 	int grade; //학년
 	String address; //사는곳
 	final boolean isGlasses = false; //안경사용유무 
+	String schoolName;
 	
 	
 	/** 멤버 함수 --> 메서드(method) = function **/
