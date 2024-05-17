@@ -6,6 +6,7 @@ public class Person {
 	String name;
 	int height;
 	int weight;
+	Person pp1 = null;
 	int sight;//시력
 	int address;//주소
 	
@@ -42,6 +43,9 @@ public class Person {
 		
 		Person p1 = new Person(20, "홍길동");
 		p1.showInfo();
+		
+		System.out.println(p1.height);
+		System.out.println(p1.pp1.name);
 		
 		//Person p2 = new Person();
 		//p2.showInfo();
