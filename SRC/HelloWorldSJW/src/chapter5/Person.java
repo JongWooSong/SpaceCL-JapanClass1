@@ -6,6 +6,8 @@ public class Person {
 	String name;
 	int height;
 	int weight;
+	int sight;//시력
+	int address;//주소
 	
 	//생성자
 	public Person() {
