@@ -4,6 +4,7 @@ public class Calc {
 
 	int a, b;
 	int c, d;
+	int abc;
 	
 	public void add(int a, int b) {
 		System.out.println( a + " + " + b + " = " + (a + b) );
