@@ -63,7 +63,7 @@ public class MyDateAhn {
 	}
 	
 	private static String printResult(boolean valid) {
-		return valid ? "유요한 날짜입니다." : "유효하지 않은 날짜입니다.";
+		return valid ? "유효한 날짜입니다." : "유효하지 않은 날짜입니다.";
 	}
 	
 }
