@@ -11,7 +11,7 @@ public class Constant {
 		long  ll = 100;
 		
 		
-		iNum4 = (int)(dNum1 + fNum2);
+		int iNum4 = (int)(dNum1 + fNum2);
 		
 		
 	}

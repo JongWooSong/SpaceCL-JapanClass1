@@ -19,7 +19,7 @@ public class Operator {
 			int num88 = 10;
 		}
 		else {
-			num88 =200;
+			int num88 =200;
 		}
 		
 		int num7 = 9;
