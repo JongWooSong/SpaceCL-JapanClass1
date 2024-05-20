@@ -2,6 +2,8 @@ package chapter6;
 
 public class Student {
 
+	public static int serialNum = 10; //고정된 = 전역!
+	
 	private String studentName;
 	private int grade;
 	private int money;
@@ -15,12 +17,18 @@ public class Student {
 	public int takeBus(Bus bus) {
 		bus.take();
 		money -= bus.PRICE;
+		
+		
+		Bus.main(null);
+		TakeTrans.main(null);
+		
 		return money;
 	}
 	
 	public int takeSubway(Subway subway) {
 		subway.take();
 		money -= subway.PRICE; //차감
+		int a;
 		return money;
 	}
 	

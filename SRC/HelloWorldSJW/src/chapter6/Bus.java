@@ -10,6 +10,11 @@ public class Bus {
 	public Bus(int busNum, int price) {
 		this.busNumber = busNum;
 		this.PRICE = price; //상수 초기화
+		Student.serialNum = 100;
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 	
 	/**
