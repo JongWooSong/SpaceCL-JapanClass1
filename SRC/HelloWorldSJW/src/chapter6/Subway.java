@@ -5,17 +5,19 @@ public class Subway {
 	private String lineNumber;
 	private int passengerCount;
 	private int money;
+	public final int PRICE;
 	
-	public Subway(String lineNum) {
+	public Subway(String lineNum, int price) {
 		lineNumber = lineNum;
+		PRICE = price;
 	}
 	
 	/**
 	 * 지하철 탑승 + 수익 계산
 	 * @param money
 	 */
-	public void take(int money) {
-		this.money += money;
+	public void take() {
+		this.money += PRICE;
 		passengerCount += 1;
 	}
 	

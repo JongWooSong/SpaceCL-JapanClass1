@@ -8,10 +8,10 @@ public class TakeTrans {
 		Student stu1 = new Student("James", 5000);
 		Student stu2 = new Student("Tomas", 10000);
 		
-		Bus bus970 = new Bus(970); //970번 버스 --> 100원 
-		Bus bus200 = new Bus(200); //200번 버스 --> 500원
-		Subway subway3 = new Subway("3");  // 1000원 차감
-		Subway subway9 = new Subway("9");  // 1500원 차감 
+		Bus bus970 = new Bus(970, 100); //970번 버스 --> 100원 
+		Bus bus200 = new Bus(200, 500); //200번 버스 --> 500원
+		Subway subway3 = new Subway("3", 1000);  // 1000원 차감
+		Subway subway9 = new Subway("9", 1500);  // 1500원 차감 
 		
 		stu1.takeBus(bus970); //버스 타고 
 		stu1.takeBus(bus200); //버스 타고

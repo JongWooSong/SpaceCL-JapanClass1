@@ -5,17 +5,19 @@ public class Bus {
 	private int busNumber;
 	private int passengerCount;
 	private int money;
+	public final int PRICE;
 	
-	public Bus(int busNum) {
+	public Bus(int busNum, int price) {
 		this.busNumber = busNum;
+		this.PRICE = price; //상수 초기화
 	}
 	
 	/**
 	 * 버스요금을 받아서 money(수익) 을 증가 시키겠다.
 	 * @param money
 	 */
-	public void take(int money) {
-		this.money += money;
+	public void take() {
+		this.money += PRICE;
 		passengerCount++; //몇명 탔는지 
 	}
 	

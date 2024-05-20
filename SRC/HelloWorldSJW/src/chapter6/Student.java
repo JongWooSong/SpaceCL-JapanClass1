@@ -13,14 +13,14 @@ public class Student {
 	}
 	
 	public int takeBus(Bus bus) {
-		bus.take(100);
-		money -= 100;
+		bus.take();
+		money -= bus.PRICE;
 		return money;
 	}
 	
 	public int takeSubway(Subway subway) {
-		subway.take(1000);
-		money -= 1000; //차감
+		subway.take();
+		money -= subway.PRICE; //차감
 		return money;
 	}
 	
