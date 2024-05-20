@@ -17,6 +17,9 @@ public class TakeTrans {
 		stu1.takeBus(bus200); //버스 타고
 		stu1.takeSubway(subway3); //지하철 타고
 		stu1.takeSubway(subway9); //지하철 타고
+		
+		stu1.takeBusOff(bus970); //버스에서 내린다.
+		
 		stu1.showInfo(); //현재 남은돈 출력
 		
 

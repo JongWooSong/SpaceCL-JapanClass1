@@ -26,8 +26,11 @@ public class Bus {
 	 * 단 0 이하일때는 마이너스로 표기하지 않는다.
 	 * @param passegerCount
 	 */
-	public void takeOff(int passegerCount) {
+	public void takeOff() {
 		//TODO 여러분들이 짜보세요
+		if(passengerCount > 0) {
+			passengerCount -= 1;
+		}
 	}
 	
 	public void showInfo() {

@@ -21,9 +21,12 @@ public class Subway {
 		passengerCount += 1;
 	}
 	
-	public int takeOff(int passengerCount) {
+	public int takeOff() {
 		//TODO 여러분이 코딩 해보세요
-		return 0;
+		if(passengerCount > 0) {
+			passengerCount -= 1;
+		}
+		return passengerCount;
 	}
 	
 	public void showInfo() {
