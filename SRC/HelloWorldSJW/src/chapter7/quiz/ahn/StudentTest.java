@@ -28,10 +28,10 @@ public class StudentTest {
 		school.addStudent(student3);
 		
 		// 전체 학생 랭킹 리스트
-		school.showStudentLankList();
+		school.showStudentRankList();
 		System.out.println();
 		// 특정 학생의 랭킹 확인
-		school.showStudentLankList(1002); // 학생ID
+		school.showStudentRankList(1002); // 학생ID
 		
 	}
 }
