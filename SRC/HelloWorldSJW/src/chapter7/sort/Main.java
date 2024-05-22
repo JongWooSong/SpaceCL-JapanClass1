@@ -15,9 +15,13 @@ public class Main {
         
         Collections.sort(people, new PersonComparator());
         
-        System.out.println("Sorted List: " + people);
-		
-	}
+        System.out.println("Sorted List: ");
+        for(int i=0; i<people.size(); i++) {
+        	Person p = people.get(i);
+        	System.out.println(  p.getName() + ", " + p.getAge() );
+        }
+        
+	}//end method
 
 }
 
@@ -51,8 +55,9 @@ class PersonComparator implements java.util.Comparator<Person> {
 
 	@Override
 	public int compare(Person o1, Person o2) {
-		System.out.println(o1.getName() + ", " + o1.getAge());
+		System.out.print(o1.getName() + ", " + o1.getAge() + " <=====> ");
 		System.out.println(o2.getName() + ", " + o2.getAge());
+		
 		return o1.getAge() - o2.getAge();
 	}
 	
