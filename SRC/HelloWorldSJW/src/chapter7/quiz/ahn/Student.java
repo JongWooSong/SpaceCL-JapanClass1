@@ -17,7 +17,11 @@ public class Student {
 		subjectList = new ArrayList<Subject>(); // ArrayList 생성
 	}
 	
-	// 학생이 수강하는 과목 추가 메서드
+	/**
+	 * 학생이 수강하는 과목 추가 메서드
+	 * @param name 학생이름
+	 * @param score 학생의 점수
+	 */
 	public void addSubject(String name, int score) {
 		Subject subject = new Subject(); // Subject 생성
 		subject.setName(name); // 과목 이름 추가
@@ -37,4 +41,5 @@ public class Student {
 		System.out.println("학생 " + studentName + "의 총점은 " + totalScore + 
 				" 평균은 " + average + "입니다.");
 	} // end method
+	
 } // end class
