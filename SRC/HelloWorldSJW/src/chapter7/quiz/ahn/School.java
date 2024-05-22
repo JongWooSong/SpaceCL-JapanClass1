@@ -19,42 +19,6 @@ public class School {
 		stuList.add(student);
 	}
 	
-// 	// ArrayList 정렬
-//	public void sortStudentLank() {
-//		Collections.sort(stuList, new Comparator<Student>() {
-//
-//			@Override
-//			public int compare(Student o1, Student o2) {
-//				// TODO Auto-generated method stub
-//				return o2.totalScore - o1.totalScore;
-//			}
-//			
-//		});
-//	}
-//	
-//	// 전체 학생 랭킹 출력
-//	public void showStudentLankList() {
-//		sortStudentLank();
-//		
-//		// 등수 출력
-//		// TODO : 같은 점수일때 등수 체크 못함
-//		for(int i = 0; i < stuList.size(); i++) {
-//			System.out.println(stuList.get(i).studentName + "의 점수: " + stuList.get(i).totalScore + " 등수: " + (i + 1));
-//		}
-//		
-//	}
-//
-//	// 특정 학생 랭킹 출력
-//	public void showStudentLankList(int studentID) {
-//		sortStudentLank();
-//		
-//		for(int i = 0; i < stuList.size(); i++) {
-//			if(stuList.get(i).studentID == studentID) {
-//				System.out.println(stuList.get(i).studentID + " " + stuList.get(i).studentName + "의 등수: " + (i + 1));
-//			}
-//		}
-//	}
-	
 	public void sortBubble() {
 		int stuSize = stuList.size();
 		scores = new int[stuSize][2]; // ID, 점수
