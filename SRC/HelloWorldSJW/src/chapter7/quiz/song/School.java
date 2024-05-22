@@ -1,20 +1,16 @@
 package chapter7.quiz.song;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class School {
 
 	private String schoolName;
 	private ArrayList<Student> stuList;
-	private ArrayList<Integer> stuRankIdList;
-	private ArrayList<Integer> stuRankList;
 	
 	public School(String schoolName) {
 		this.schoolName = schoolName;
 		stuList = new ArrayList<Student>();
-		stuRankIdList = new ArrayList<Integer>();
-		stuRankList = new ArrayList<Integer>();
 	}
 	
 	public void addStudent(Student student) {
@@ -25,7 +21,7 @@ public class School {
 	public void showRank(Student student) {
 		if(student == null) {
 			//TODO 전체 학생의 랭크를 출력한다.
-			
+			showRankCalc();
 		}
 		else {
 			//TODO 해당 학생의 랭크를 출력한다.
@@ -35,16 +31,25 @@ public class School {
 	
 	private void showRankCalc() {
 		
-		stuRankIdList.clear();
-		stuRankList.clear();
+		Collections.sort(stuList, new StudentComparator());
 		
 		for(int i=0; i<stuList.size(); i++) {
-			
-			stuList.get(i).getAverage()
-			
+			Student st = stuList.get(i);
+			System.out.println(st.getStudentId() + " , " + st.getStuName() + ", " + st.getAverage());
 		}
 		
-		
+		//최종적으로 찍을때는 
+		int rankCount = 1;
+		for(int i=stuList.size()-1; i>=0; i--) {
+			Student st = stuList.get(i);
+			System.out.println( rankCount +"등 ==> " + 
+					st.getStudentId() + " , " + st.getStuName() 
+					+ ", " + st.getAverage()
+					);
+			rankCount += 1;
+		}
 	}
 	
 }
+
+

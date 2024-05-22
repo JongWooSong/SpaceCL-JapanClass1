@@ -9,6 +9,13 @@ public class Subject {
 	/** 영어 */
 	public static final int CODE_ENG = 3000;
 	
+	/** 수학 */
+	public static final String CODE_MATH_NAME = "수학";
+	/** 국어 */
+	public static final String CODE_KOREAN_NAME = "국어";
+	/** 영어 */
+	public static final String CODE_ENG_NAME = "영어";
+	
 	
 	private int subjectCode; //과목 고유코드
 	private String name; // 과목 이름
