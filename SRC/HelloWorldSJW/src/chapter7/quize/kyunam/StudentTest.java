@@ -33,9 +33,9 @@ public class StudentTest {
 		school.addStudent(studentKim);
 		school.addStudent(studentPark);
 		
-		school.setTotalOfStudents();
-		school.setAvgOfStudents();
-		school.setRankOfStudents();
+		school.setTotalOfStudents();	// 학생들마다의 성적 총점 구하기
+		school.setAvgOfStudents();		// 학생들마다의 평균 점수 구하기
+		school.setRankOfStudents();		// 학생들마다의 등수 매기기
 		
 		studentLee.showStudentInfo();
 		System.out.println("========================================");
@@ -44,7 +44,7 @@ public class StudentTest {
 		studentPark.showStudentInfo();
 		System.out.println("========================================");
 
-		school.showRanking();
+		school.showRanking();	// 전학생들의 등수 보여주기
 	}
 	
 }
