@@ -25,10 +25,10 @@ public class VIPCustomer extends Customer {
 		return agentID;
 	}
 	
-//	@Override //어노테이션 : 표식이면서 코드 
-//	public int calcPrice(int price) {
-//		return 0;
-//	}
+	@Override //어노테이션 : 표식이면서 코드 
+	public int calcPrice(int price) {
+		return 0;
+	}
 	
 	@Override
 	public String toString() {
