@@ -14,14 +14,14 @@ public class Customer {
 	}
 	
 	public Customer(int customerId) {
+		//super();
 		this.customerID = customerId;
 		System.out.println("Customer(int customerId) 생성자");
 	}
 	
-	@Deprecated
-	public int calcPrice(int price) {
-		bonusPoint += price * bonusRatio; // 보너스 포인트 계산
-		return price;
+	public int calcPrice(int p) {
+		bonusPoint += p * bonusRatio; // 보너스 포인트 계산
+		return p;
 	}
 	
 	public String showCustomerInfo() {
