@@ -7,8 +7,7 @@ import java.util.ArrayList;
  * 클래스가 생성(Constructor)되면 입학한 학생들의 정보를 지녀야 함
  */
 public class School {
-	ArrayList<Student> studentList; // 학생목록 배열을 선언
-	double[] ranking;
+	private ArrayList<Student> studentList; // 학생목록 배열을 선언
 
 	// 생성자
 	public School() {
@@ -22,7 +21,9 @@ public class School {
 
 	// 학생들의 총점을 구하는 함수
 	public void setTotalOfStudents() {
+		
 		for (int i = 0; i < studentList.size(); i++) {
+			
 			int totalScore = 0;
 			ArrayList<Subject> subjects = new ArrayList<Subject>();
 			subjects = studentList.get(i).subjectList;
@@ -37,7 +38,9 @@ public class School {
 
 	// 학생들의 평균을 구하는 함수
 	public void setAvgOfStudents() {
+		
 		for (int i = 0; i < studentList.size(); i++) {
+			
 			int avgScore = 0;
 			ArrayList<Subject> subjects = new ArrayList<Subject>();
 
@@ -46,27 +49,34 @@ public class School {
 
 			studentList.get(i).avg = avgScore;
 		} // end for
+		
 	}// end setAvgOfStudents
 
 	// 학생들의 순위를 구하는 함수
 	public void setRankOfStudents() {
-        for(int i = 0; i < studentList.size(); i++) {
-        	int cnt = 1;
-        	
-        	for(int j = 0; j < studentList.size(); j++) {
-        		if(studentList.get(j).avg > studentList.get(i).avg) {
-        			cnt += 1;
-        		}//end if
-        	}//end for
-        	studentList.get(i).rank = cnt;
-        }//end for
+		
+		for (int i = 0; i < studentList.size(); i++) {
+			int cnt = 1;
+
+			for (int j = 0; j < studentList.size(); j++) {
+				
+				if (studentList.get(j).avg > studentList.get(i).avg) {
+					cnt += 1;
+				} // end if
+				
+			} // end for
+			
+			studentList.get(i).rank = cnt;
+		} // end for
 
 	}
 
 	// 학생들의 순위를 전부 보여주는 함수
 	public void showRanking() {
+		
 		for (int i = 0; i < studentList.size(); i++) {
-			System.out.println("학생 "+studentList.get(i).studentName+"의 평균은 "+studentList.get(i).avg+"이므로 등수는 "+studentList.get(i).rank+"입니다");
+			System.out.println("학생 " + studentList.get(i).studentName + "의 평균은 " + studentList.get(i).avg + "이므로 등수는 "
+					+ studentList.get(i).rank + "입니다");
 		}
 	}
 
