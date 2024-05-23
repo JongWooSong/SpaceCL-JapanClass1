@@ -50,4 +50,5 @@ public class MyDateSMJ {
 		MyDateSMJ date2 = new MyDateSMJ(2, 10, 2006);
 		System.out.println(date2.isValid());
 	}
+	
 } // end class
