@@ -1,25 +1,28 @@
-package chapter10;
+package chapter10.quiz;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Bubble implements Sort {
+public class Bubble implements Sort{
 
 	@Override
 	public List<Integer> acending(List<Integer> list) {
-		// TODO Auto-generated method stub
-		return null;
+		list.sort(Comparator.naturalOrder());
+		return list;
 	}
 
 	@Override
 	public List<Integer> descending(List<Integer> list) {
-		// TODO Auto-generated method stub
-		return null;
+		list.sort(Comparator.reverseOrder());
+
+		return list;
 	}
 
 	@Override
 	public void description() {
-		// TODO Auto-generated method stub
 
 	}
+
+
 
 }
