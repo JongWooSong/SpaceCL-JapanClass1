@@ -1,4 +1,4 @@
-package chapter7.sort;
+]package chapter7.sort;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +38,7 @@ class Person {
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
