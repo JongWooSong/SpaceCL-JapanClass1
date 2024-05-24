@@ -1,5 +1,8 @@
 package chapter10;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ImplCalcTest {
 
 	public static void main(String[] args) {
@@ -9,8 +12,10 @@ public class ImplCalcTest {
 		ImplCalc cal3 = new ImplCalc();
 		Object cal4 = new ImplCalc();
 		
-		cal3.clacP( cal4 );
+		cal3.clacP( cal3 );
 	
+		Iterable<String> l = new ArrayList<String>();
+		
 	}
 
 }
