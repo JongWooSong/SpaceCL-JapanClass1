@@ -1,14 +1,13 @@
 package chapter9;
 
-public abstract class Computer {
+final public  class Computer {
 
-	public void go() {
+	final public void go() {
 		
 		
 	}
 	
 	//추상 메서드
-	public abstract void gogo();
 	
 	//일반 메서드
 	public void mainGo(int type) {
