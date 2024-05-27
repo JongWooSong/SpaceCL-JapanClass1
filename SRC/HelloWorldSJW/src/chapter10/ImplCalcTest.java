@@ -14,8 +14,12 @@ public class ImplCalcTest {
 		
 		cal3.clacP( cal3 );
 	
-		Iterable<String> l = new ArrayList<String>();
-		
+		ArrayList<String> l = new ArrayList<String>();
+		setList( l);
 	}
 
+	
+	public static void setList(List<String> list) {
+		
+	}
 }

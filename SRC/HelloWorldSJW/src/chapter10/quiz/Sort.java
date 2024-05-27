@@ -10,6 +10,6 @@ public interface Sort {
 	//내림차순
 	public List<Integer> descending(List<Integer> list);
 	
-	public void description();
+	public void description(List<Integer> list);
 	
 }

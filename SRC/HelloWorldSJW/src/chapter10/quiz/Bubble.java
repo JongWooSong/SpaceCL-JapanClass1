@@ -19,7 +19,7 @@ public class Bubble implements Sort{
 	}
 
 	@Override
-	public void description() {
+	public void description(List<Integer> list) {
 
 	}
 
