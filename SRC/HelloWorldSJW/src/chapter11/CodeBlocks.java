@@ -30,8 +30,22 @@ public class CodeBlocks {
 		CodeBlocks cb = new CodeBlocks();
 		cb.append();
 
-		System.out.println(aField);
-		System.out.println(cb.bField);
+//		System.out.println(aField);
+//		System.out.println(cb.bField);
+//		
+
+		Integer a = new Integer(2); 
+		Integer b = new Integer(2); 
+		System.out.println( a == b );
+		
+		int aaa = 9 / 0; 
+		 int a1 = 5; 
+		double a2 = (float)a1; 
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		aField = null;
 	}
 
 }

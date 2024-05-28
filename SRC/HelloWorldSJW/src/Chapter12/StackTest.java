@@ -1,6 +1,7 @@
-package Chapter12;
+package chapter12;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 class MyStack {
 
@@ -9,6 +10,7 @@ class MyStack {
 	public void push(String data) {
 		arrayStack.add(data);
 	}
+	
 	public String pop() {
 		int len = arrayStack.size();
 		if(len == 0) {
@@ -19,6 +21,12 @@ class MyStack {
 		return(arrayStack.remove(len-1));
 	}
 
+	public void delAll() {
+		Iterator<String> ir = arrayStack.iterator();
+		while(ir.hasNext()) {
+			arrayStack.remove(0);
+		}
+	}
 	
 }
 
@@ -30,9 +38,11 @@ public class StackTest {
 		stack.push("B");
 		stack.push("C");
 
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
+		stack.delAll();
+		
+//		System.out.println(stack.pop());
+//		System.out.println(stack.pop());
+//		System.out.println(stack.pop());
 
 	}
 
