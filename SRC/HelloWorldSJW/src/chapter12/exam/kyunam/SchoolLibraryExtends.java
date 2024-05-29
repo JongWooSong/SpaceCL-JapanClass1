@@ -20,38 +20,39 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 
 	@Override
 	public String getBookTitleList() {
-		
+
 		String titleList = "";
-		
+
 		Iterator it = map.keySet().iterator();
-		while(it.hasNext()) {
-			String title = (String) it.next(); 
+		while (it.hasNext()) {
+			String title = (String) it.next();
 			titleList += title + ", ";
 		}
-		
+
 		return titleList;
 	}
 
 	@Override
 	public Book getBookByTitle(String bookTitle) {
-		
+
 		Book book = null;
-		
+
 		if (map.get(bookTitle) != null) {
 			book = map.get(bookTitle);
 		}
-		
+
 		return book;
 	}
-	
+
 	@Override
 	public int getBookNum() {
 
 		int bookNum = 0;
 		Iterator it = map.keySet().iterator();
-		
+
 		while (it.hasNext()) {
-			bookNum++;
+			it.next();
+			bookNum += 1;
 		}
 
 		return bookNum;
@@ -59,13 +60,13 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 
 	@Override
 	public Book getBookByAuthor(String author) {
-		
+
 		Book book = null;
-		
+
 		if (map.get(author) != null) {
 			book = map.get(author);
 		}
-		
+
 		return book;
 	}
 

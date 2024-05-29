@@ -35,6 +35,8 @@ public class Test {
 		System.out.println("저자:" + testBook2.getTitle());
 		
 		System.out.println(sle.getBookTitleList());
+		
+		System.out.println("책 보유수: " + sle.getBookNum());
 
 	}
 }
