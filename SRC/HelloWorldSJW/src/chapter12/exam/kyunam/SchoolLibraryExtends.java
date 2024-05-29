@@ -14,7 +14,6 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 	@Override
 	public void addBook(Book book) {
 		map.put(book.getTitle(), book);
-		map.put(book.getAuthor(), book);
 		System.out.println(book.getTitle() + " 책이 추가되었습니다.");
 	}
 
@@ -63,11 +62,17 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 
 		Book book = null;
 
-		if (map.get(author) != null) {
-			book = map.get(author);
-		}
+		Iterator it = map.keySet().iterator();
 
-		return book;
+		while (it.hasNext()) {
+			String title = (String) it.next();
+			book = map.get(title);
+			
+			if (book.getAuthor().equals(author)) {
+				return book;
+			}
+		}
+		return null;
 	}
 
 }
