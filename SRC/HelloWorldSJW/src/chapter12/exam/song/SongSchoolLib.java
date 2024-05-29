@@ -19,7 +19,22 @@ public class SongSchoolLib extends SchoolLibrary {
 	@Override
 	public String getBookTitleList() {
 		//홍길동전, 가상전, 윤석열전...
-		return null;
+		Iterator<String> it = mLibMap.keySet().iterator();
+		String bookTitles = "";
+		
+		int count = 0;
+		while(it.hasNext()) {
+			String key = it.next();
+			if( count == 0 ) {
+				bookTitles += key;	
+			}
+			else {
+				bookTitles += ", " + key;
+			}
+			count++;
+		}
+		
+		return bookTitles;
 	}
 
 	@Override
