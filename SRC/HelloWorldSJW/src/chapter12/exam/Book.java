@@ -4,7 +4,15 @@ public class Book {
 
 	private String author;
 	private String title;
+	private String publisher;
 	
+	public Book() {
+		
+	}
+	
+	public Book(String author, String title) {
+		
+	}
 	
 	public String getAuthor() {
 		return author;
