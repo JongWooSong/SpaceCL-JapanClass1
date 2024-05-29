@@ -32,9 +32,9 @@ public class Test {
 		System.out.println("타이틀 : " + testBook.getTitle());
 
 		Book testBook2 = sle.getBookByAuthor("원빈");
-		System.out.println("저자:" + testBook2.getTitle());
+		System.out.println("저자 : " + testBook2.getTitle());
 		
-		System.out.println(sle.getBookTitleList());
+		System.out.println("책 보유 리스트: " + sle.getBookTitleList());
 		
 		System.out.println("책 보유수: " + sle.getBookNum());
 
