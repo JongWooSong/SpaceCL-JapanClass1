@@ -14,6 +14,12 @@ public class Book {
 		
 	}
 	
+	
+	class AAA {
+		
+	}
+	
+	
 	public String getAuthor() {
 		return author;
 	}
