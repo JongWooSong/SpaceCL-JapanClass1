@@ -2,6 +2,9 @@ package chapter16;
 
 import java.awt.Canvas;
 import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 public class HorseTest {
@@ -21,6 +24,12 @@ public class HorseTest {
 		frm.setSize(400, 400);
 		frm.add(canvas);
 		frm.setVisible(true);
+		frm.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0); //자바 프로그램 종료 
+			}
+		});
 		
 		Horse h1 = new Horse(canvas, 30, "1번말");
 		Horse h2 = new Horse(canvas, 70, "2번말");
