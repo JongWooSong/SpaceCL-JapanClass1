@@ -2,6 +2,7 @@ package chapter12.exam.kyunam;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import chapter12.exam.Book;
 import chapter12.exam.SchoolLibrary;
@@ -9,7 +10,7 @@ import chapter12.exam.SchoolLibrary;
 public class SchoolLibraryExtends extends SchoolLibrary {
 
 	//
-	HashMap<String, Book> map = new HashMap<String, Book>();
+	private Map<String, Book> map = new HashMap<String, Book>();
 
 	@Override
 	public void addBook(Book book) {
@@ -45,16 +46,7 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 
 	@Override
 	public int getBookNum() {
-
-		int bookNum = 0;
-		Iterator it = map.keySet().iterator();
-
-		while (it.hasNext()) {
-			it.next();
-			bookNum += 1;
-		}
-
-		return bookNum;
+		return map.size();
 	}
 
 	@Override
@@ -62,7 +54,7 @@ public class SchoolLibraryExtends extends SchoolLibrary {
 
 		Book book = null;
 
-		Iterator it = map.keySet().iterator();
+		Iterator<String> it = map.keySet().iterator();
 
 		while (it.hasNext()) {
 			String title = (String) it.next();

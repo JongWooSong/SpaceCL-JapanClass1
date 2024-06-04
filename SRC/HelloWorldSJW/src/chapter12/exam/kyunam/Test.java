@@ -28,13 +28,15 @@ public class Test {
 		sle.addBook(book4);
 		sle.addBook(book5);
 
+		System.out.println();
+		
 		Book testBook = sle.getBookByTitle("비극");
 		System.out.println("타이틀 : " + testBook.getTitle());
 
 		Book testBook2 = sle.getBookByAuthor("원빈");
 		System.out.println("저자 : " + testBook2.getTitle());
 		
-		System.out.println("책 보유 리스트: " + sle.getBookTitleList());
+		System.out.println("책 보유 리스트 : " + sle.getBookTitleList());
 		
 		System.out.println("책 보유수: " + sle.getBookNum());
 
