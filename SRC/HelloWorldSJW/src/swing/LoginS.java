@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,7 +43,40 @@ public class LoginS extends JFrame {
 		c.add(jta, BorderLayout.CENTER);
 		c.add(p1, BorderLayout.SOUTH);
 		
+		//전송버튼 클릭 이벤트
+		btnSend.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sendKey(jta, jt);
+			}
+		});
+		
+		//입력필드 키 이벤트
+		jt.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+					sendKey(jta, jt);
+				}
+			}
+		});
+		
+	}//end Constructor
+	
+	public void sendKey(JTextArea jta, JTextField jt) {
+		jta.setText(  jta.getText() + jt.getText() + "\n" );
+		jt.setText("");
+		jt.requestFocus();
 	}
 	
 	
-}
+}//end class
