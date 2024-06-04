@@ -20,7 +20,7 @@ public class Swing2 extends JFrame {
 		s1.setTitle("GridLayout");
 		s1.setResizable(false);
 		s1.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+		
 		Container contentPane = s1.getContentPane();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 
@@ -65,8 +65,8 @@ public class Swing2 extends JFrame {
 
 		btn1.addActionListener(btnAct);
 
+		
 		s1.setVisible(true);
-
 	}
 
 }
