@@ -19,6 +19,9 @@ import javax.swing.JTextField;
 
 public class BorderLayoutTest extends JFrame {
 
+	private boolean isLoginSuccess = false;
+	private LoginS mChatView;
+	
 	public BorderLayoutTest() {
 		//기본셋팅
 		setSize(200, 130);
@@ -103,6 +106,13 @@ public class BorderLayoutTest extends JFrame {
 		}
 		else if( "abcd".equals(tfId.getText()) && "0987!".equals(tfPw.getText()) ) {
 			JOptionPane.showMessageDialog(null, "로그인 성공!!");
+			isLoginSuccess = true;
+			//채팅창은 띄우고
+			mChatView = new LoginS();
+			mChatView.setVisible(true);
+			
+			//로그인창은 사라지고
+			this.setVisible(false);
 			return true;
 		}
 		else {
@@ -110,6 +120,10 @@ public class BorderLayoutTest extends JFrame {
 			tfPw.requestFocus();
 			return false;
 		}
+	}//end method
+
+	public boolean isLoginSuccess() {
+		return isLoginSuccess;
 	}
 
 }

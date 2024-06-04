@@ -1,11 +1,11 @@
 package swing;
 
-public class LoginTest extends BorderLayoutTest {
+public class LoginTest {
 
 	public static void main(String[] args) {
 		
-		LoginS lt = new LoginS();
-		lt.setVisible(true);
+		BorderLayoutTest loginView = new BorderLayoutTest();
+		loginView.setVisible(true);
 		
 	}
 
