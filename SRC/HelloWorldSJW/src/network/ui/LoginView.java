@@ -13,7 +13,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
@@ -22,6 +21,7 @@ public class LoginView extends JFrame {
 	private boolean isLoginSuccess = false;
 	private ChatView mChatView;
 	
+	//생성자
 	public LoginView() {
 		//기본셋팅
 		setSize(200, 130);
@@ -48,6 +48,8 @@ public class LoginView extends JFrame {
 		JTextField tfId = new JTextField();
 		JTextField tfPw = new JTextField();
 
+		tfId.setText("192.168.0.49");
+		
 		p1.add(lb1);
 		p1.add(tfId);
 		
@@ -104,22 +106,14 @@ public class LoginView extends JFrame {
 			tfPw.requestFocus();
 			return false;
 		}
-		else if( "abcd".equals(tfId.getText()) && "0987!".equals(tfPw.getText()) ) {
-			JOptionPane.showMessageDialog(null, "로그인 성공!!");
-			isLoginSuccess = true;
-			//채팅창은 띄우고
-			mChatView = new ChatView();
-			mChatView.setVisible(true);
-			
-			//로그인창은 사라지고
-			this.setVisible(false);
-			return true;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "로그인 실패!!");
-			tfPw.requestFocus();
-			return false;
-		}
+		
+		this.setVisible(false); //로그인 화면은 가리고
+		
+		mChatView = new ChatView();
+		mChatView.setVisible(true); //채팅 화면은 시작한다.
+		
+		
+		return true;
 	}//end method
 
 	public boolean isLoginSuccess() {
