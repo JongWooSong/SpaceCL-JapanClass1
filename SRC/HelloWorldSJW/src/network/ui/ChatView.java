@@ -19,6 +19,7 @@ public class ChatView extends JFrame {
 	String mIp;
 	String mNickName;
 	JTextArea mJta;
+	private MultiChatClient mChatClient;
 	
 	public ChatView(String ip, String nickName) {
 		mIp = ip;
@@ -76,6 +77,8 @@ public class ChatView extends JFrame {
 				}
 			}
 		});
+		
+		mChatClient = new MultiChatClient(this);
 		
 	}//end Constructor
 	
