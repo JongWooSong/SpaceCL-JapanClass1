@@ -1,5 +1,7 @@
 package network;
 
+import java.io.DataInput;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -42,4 +44,43 @@ public class MultiChatServer {
 		new MultiChatServer().start(); //서버 시작
 	}
 	
-}//end class 
+	
+	class ServerReceiver extends Thread {
+		Socket socket;
+		DataInputStream input;
+		DataOutputStream output;
+		
+		public ServerReceiver(Socket socket) {
+			this.socket = socket;
+			try {
+				input = new DataInputStream(socket.getInputStream());
+				output = new DataOutputStream(socket.getOutputStream());
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		@Override
+		public void run() {
+		
+			String name = "";
+			
+			try {
+				name = input.readUTF();
+				System.out.println(name + "님이 접속 하셨습니다.");
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}//end run()
+	};
+	
+	
+};//end class 
+
+
+
+
+
+
