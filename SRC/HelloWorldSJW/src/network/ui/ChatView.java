@@ -18,7 +18,7 @@ public class ChatView extends JFrame {
 
 	private String mIp;
 	private String mNickName;
-	
+	private JTextArea mJta;
 	
 	public ChatView(String ip, String nickName) {
 		mIp = ip;
@@ -32,8 +32,8 @@ public class ChatView extends JFrame {
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		
-		JTextArea jta = new JTextArea();
-		jta.setEditable(false);
+		mJta = new JTextArea();
+		mJta.setEditable(false);
 		
 		Panel p1 = new Panel();
 		p1.setPreferredSize(new Dimension(800, 40));
@@ -47,14 +47,14 @@ public class ChatView extends JFrame {
 		p1.add(btnSend, BorderLayout.EAST);
 		
 		//컨테이너 센터에 추가
-		c.add(jta, BorderLayout.CENTER);
+		c.add(mJta, BorderLayout.CENTER);
 		c.add(p1, BorderLayout.SOUTH);
 		
 		//전송버튼 클릭 이벤트
 		btnSend.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sendKey(jta, jt);
+				sendKey(mJta, jt);
 			}
 		});
 		
@@ -72,7 +72,7 @@ public class ChatView extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-					sendKey(jta, jt);
+					sendKey(mJta, jt);
 				}
 			}
 		});
