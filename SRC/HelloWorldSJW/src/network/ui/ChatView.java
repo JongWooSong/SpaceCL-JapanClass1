@@ -16,9 +16,9 @@ import javax.swing.JTextField;
 
 public class ChatView extends JFrame {
 
-	private String mIp;
-	private String mNickName;
-	private JTextArea mJta;
+	String mIp;
+	String mNickName;
+	JTextArea mJta;
 	
 	public ChatView(String ip, String nickName) {
 		mIp = ip;
