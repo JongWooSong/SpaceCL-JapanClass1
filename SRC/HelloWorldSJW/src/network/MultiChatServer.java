@@ -1,12 +1,12 @@
 package network;
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class MultiChatServer {
 
@@ -67,13 +67,48 @@ public class MultiChatServer {
 			
 			try {
 				name = input.readUTF();
-				System.out.println(name + "님이 접속 하셨습니다.");
+				
+				//접속 클라이언트를 Map 에 추가한다.
+				clients.put(name, output);
+				
+				String msg = name + "님이 접속 하셨습니다.";
+				sendToAll(msg);
+				System.out.println(msg);
+				
+				System.out.println("현재 " + clients.size() + " 명이 대화방에 접속 중입니다.");
+				
+				//메세지 전송
+				while(input != null) {
+					sendToAll(input.readUTF());
+				}
 				
 			} catch(Exception e) {
 				e.printStackTrace();
+			} finally {
+				//접속이 종료되면 
+				clients.remove(name);
+				String msg = name + "님이 나가셨습니다.";
+				sendToAll(msg);
+				System.out.println(msg);
 			}
 			
 		}//end run()
+		
+		
+		//모든 클라이언트들에게 메세지 발송
+		public void sendToAll(String msg) {
+			Iterator<String> it = clients.keySet().iterator();
+			while(it.hasNext()) {
+				try {
+					DataOutputStream dos = clients.get(it.next());
+					dos.writeUTF(msg);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
 	};
 	
 	
