@@ -3,6 +3,7 @@ package network.ui;
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Date;
 
 public class MultiChatClient {
 
@@ -25,9 +26,10 @@ public class MultiChatClient {
 	public void sendMsg(String msg) {
 		try {
 			OutputStream os = mSocket.getOutputStream();
-			BufferedOutputStream bos = new BufferedOutputStream(os);
-			byte[] bytes = msg.getBytes();
-			bos.write(bytes);
+			System.out.println( new Date() + " ==> " + "클라이언트가 서버로 메시지를 송신 합니다.");
+			BufferedOutputStream bw = new BufferedOutputStream( os );
+			bw.write( msg.getBytes() );
+			bw.flush();//즉시전송 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
