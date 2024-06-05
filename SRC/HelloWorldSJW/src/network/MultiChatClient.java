@@ -1,6 +1,7 @@
 package network;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -54,6 +55,39 @@ public class MultiChatClient {
 	};//end class
 	
 	
+	class ClientSender extends Thread {
+		Socket socket;
+		DataOutputStream output;
+		
+		public ClientSender(Socket socket) {
+			this.socket = socket;
+			try {
+				output = new DataOutputStream(socket.getOutputStream());
+				output.writeUTF(name);
+				System.out.println("대화방에 입장 하였습니다.");
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	
+		@Override
+		public void run() {
+			Scanner sc = new Scanner(System.in);
+			String msg = "";
+			while( output != null ) {
+				try {
+					msg = sc.nextLine();
+					if("exit".equals(msg)) {
+						System.exit(0); //프로그램 종료
+					}
+					output.writeUTF("[" + name + "] " + msg);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}//end run()
+		
+	};//end class
 	
 	
 	
