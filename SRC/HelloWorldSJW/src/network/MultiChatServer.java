@@ -32,6 +32,8 @@ public class MultiChatServer {
 			while(true) {
 				Socket socket = serverSocket.accept();
 				//쓰레드 시작
+				ServerReceiver receiver = new ServerReceiver(socket);
+				receiver.start();
 			}
 			
 		} catch(Exception e) {

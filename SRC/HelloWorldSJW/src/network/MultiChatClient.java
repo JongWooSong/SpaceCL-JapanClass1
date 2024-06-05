@@ -18,6 +18,12 @@ public class MultiChatClient {
 			System.out.println("서버와의 연결이 되었습니다. 대화명을 입력하세요:");
 			name = new Scanner(System.in).nextLine();
 			
+			ClientReceiver clientReceiver = new ClientReceiver(socket);
+			ClientSender clientSender = new ClientSender(socket);
+			
+			clientReceiver.start();
+			clientSender.start();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
