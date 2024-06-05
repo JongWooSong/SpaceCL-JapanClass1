@@ -40,13 +40,13 @@ public class LoginView extends JFrame {
 		c.add( p1, BorderLayout.CENTER );
 		c.add( btn5, BorderLayout.SOUTH );
 		
-		Label lb1 = new Label("ID: ");
+		Label lb1 = new Label("IP: ");
 		lb1.setAlignment(Label.CENTER);
-		Label lb2 = new Label("PW: ");
+		Label lb2 = new Label("NickName: ");
 		lb2.setAlignment(Label.CENTER);
 		
 		JTextField tfId = new JTextField();
-		JPasswordField tfPw = new JPasswordField(3);
+		JTextField tfPw = new JTextField();
 
 		p1.add(lb1);
 		p1.add(tfId);
@@ -93,14 +93,14 @@ public class LoginView extends JFrame {
 	 * @param tfPw
 	 * @return true:로그인 성공, false:로그인 실패
 	 */
-	public boolean isLoginCheck(JTextField tfId, JPasswordField tfPw) {
+	public boolean isLoginCheck(JTextField tfId, JTextField tfPw) {
 		if( "".equals(tfId.getText())  ) {
-			JOptionPane.showMessageDialog(null, "ID를 입력하세요");
+			JOptionPane.showMessageDialog(null, "IP를 입력하세요");
 			tfId.requestFocus();
 			return false;
 		}
-		else if( "".equals(new String(tfPw.getPassword()))  ) {
-			JOptionPane.showMessageDialog(null, "PW를 입력하세요");
+		else if( "".equals(new String(tfPw.getText()))  ) {
+			JOptionPane.showMessageDialog(null, "닉네임을 입력하세요");
 			tfPw.requestFocus();
 			return false;
 		}
