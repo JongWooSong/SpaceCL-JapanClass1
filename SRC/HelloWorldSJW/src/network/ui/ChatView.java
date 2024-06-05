@@ -16,7 +16,14 @@ import javax.swing.JTextField;
 
 public class ChatView extends JFrame {
 
-	public ChatView() {
+	private String mIp;
+	private String mNickName;
+	
+	
+	public ChatView(String ip, String nickName) {
+		mIp = ip;
+		mNickName = nickName;
+		
 		setSize(200, 500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("채팅창");

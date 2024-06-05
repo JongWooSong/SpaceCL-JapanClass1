@@ -109,9 +109,8 @@ public class LoginView extends JFrame {
 		
 		this.setVisible(false); //로그인 화면은 가리고
 		
-		mChatView = new ChatView();
+		mChatView = new ChatView( tfId.getText(), tfPw.getText() );
 		mChatView.setVisible(true); //채팅 화면은 시작한다.
-		
 		
 		return true;
 	}//end method
