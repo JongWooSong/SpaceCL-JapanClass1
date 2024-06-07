@@ -97,11 +97,11 @@ public class ChatView extends JFrame {
 	
 	public void sendKey(JTextArea jta, JTextField jt) {
 		jta.append( jt.getText() + "\n" );
-		jt.setText("");
-		jt.requestFocus();
-		
 		//서버로 메시지 전송
 		mChatClient.sendMsg(jt.getText());
+		
+		jt.setText("");
+		jt.requestFocus();
 	}
 	
 	
