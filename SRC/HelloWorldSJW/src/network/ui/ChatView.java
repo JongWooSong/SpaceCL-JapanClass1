@@ -11,14 +11,17 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import network.MultiChatClient;
+
 public class ChatView extends JFrame {
 
-	String mIp;
-	String mNickName;
-	JTextArea mJta;
+	public String mIp;
+	public String mNickName;
+	public JTextArea mJta;
 	private MultiChatClient mChatClient;
 	
 	public ChatView(String ip, String nickName) {
@@ -36,6 +39,9 @@ public class ChatView extends JFrame {
 		mJta = new JTextArea();
 		mJta.setEditable(false);
 		
+		JScrollPane scrollPane = new JScrollPane(mJta);
+		
+		
 		Panel p1 = new Panel();
 		p1.setPreferredSize(new Dimension(800, 40));
 		p1.setLayout(new BorderLayout());
@@ -48,7 +54,7 @@ public class ChatView extends JFrame {
 		p1.add(btnSend, BorderLayout.EAST);
 		
 		//컨테이너 센터에 추가
-		c.add(mJta, BorderLayout.CENTER);
+		c.add(scrollPane, BorderLayout.CENTER);
 		c.add(p1, BorderLayout.SOUTH);
 		
 		//전송버튼 클릭 이벤트
@@ -78,14 +84,24 @@ public class ChatView extends JFrame {
 			}
 		});
 		
-		mChatClient = new MultiChatClient(this);
+		//생성시에 ChatView 객체를 보낸다.
+		mChatClient = new MultiChatClient(this, mNickName);
+		mChatClient.start();
 		
 	}//end Constructor
 	
+	//화면에 출력
+	public void addViewMsg(String msg) {
+		mJta.append(msg + "\n");
+	}
+	
 	public void sendKey(JTextArea jta, JTextField jt) {
-		jta.setText(  jta.getText() + jt.getText() + "\n" );
+		jta.append( jt.getText() + "\n" );
 		jt.setText("");
 		jt.requestFocus();
+		
+		//서버로 메시지 전송
+		mChatClient.sendMsg(jt.getText());
 	}
 	
 	

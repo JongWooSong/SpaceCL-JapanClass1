@@ -5,34 +5,46 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import network.ui.ChatView;
+
 public class MultiChatClient {
 
 	private String name;
 	private Socket socket;
 	private String serverIP = "192.168.0.49";
 	private int serverPort = 7777;
+	private ChatView mChatView;
+	
+	public MultiChatClient(ChatView chatView, String name) {
+		mChatView = chatView;
+		this.name = name;
+	}
+	
 	
 	public void start() {
 		try {
 			socket = new Socket(serverIP, serverPort);
-			System.out.println("서버와의 연결이 되었습니다. 대화명을 입력하세요:");
-			name = new Scanner(System.in).nextLine();
+			mChatView.addViewMsg( "서버와의 연결이 되었습니다. 대화명은 " + name + " 입니다." );
 			
 			ClientReceiver clientReceiver = new ClientReceiver(socket);
-			ClientSender clientSender = new ClientSender(socket);
-			
 			clientReceiver.start();
-			clientSender.start();
+			//ClientSender clientSender = new ClientSender(socket);
+			//clientSender.start();
+			
+			//추가: 닉네임을 처음에 서버로 날려준다.
+			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+			output.writeUTF(name);
+			//System.out.println("대화방에 입장 하였습니다.");
+			mChatView.addViewMsg("대화방에 입장 하였습니다.");
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
+	};
 	
-	public static void main(String[] args) {
-		new MultiChatClient().start();
+	public void sendMsg(String msg) {
+		new ClientSenderUI(socket, msg).start();
 	}
-	
 	
 	class ClientReceiver extends Thread {
 		Socket socket;
@@ -51,7 +63,8 @@ public class MultiChatClient {
 		public void run() {
 			while( input != null ) {
 				try {
-					System.out.println( input.readUTF() );
+					//System.out.println( input.readUTF() );
+					mChatView.addViewMsg( input.readUTF() );
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -70,7 +83,8 @@ public class MultiChatClient {
 			try {
 				output = new DataOutputStream(socket.getOutputStream());
 				output.writeUTF(name);
-				System.out.println("대화방에 입장 하였습니다.");
+				//System.out.println("대화방에 입장 하였습니다.");
+				mChatView.addViewMsg("대화방에 입장 하였습니다.");
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -96,6 +110,26 @@ public class MultiChatClient {
 	};//end class
 	
 	
+	class ClientSenderUI extends Thread {
+		Socket socket;
+		String msg;
+		
+		public ClientSenderUI(Socket socket, String msg) {
+			this.socket = socket;
+			this.msg = msg;
+		}
+		
+		@Override
+		public void run() {
+			//서버로 메시지를 전송한다.
+			try {
+				DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+				output.writeUTF("[" + name + "]=> " + this.msg);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	};
 	
 	
 };
