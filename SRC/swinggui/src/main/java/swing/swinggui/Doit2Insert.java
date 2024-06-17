@@ -18,7 +18,6 @@ public class Doit2Insert {
 		doitBean.setCol7("777");
 		
 		doit2Insert.insert(doitBean);
-		
 	}
 	
 	
