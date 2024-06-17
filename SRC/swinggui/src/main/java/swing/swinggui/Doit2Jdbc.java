@@ -10,6 +10,7 @@ public class Doit2Jdbc {
 	public static void main(String[] args) {
 
 		Connection conn = null;
+		//select
 		Statement stmt = null;
 		
 		try {
