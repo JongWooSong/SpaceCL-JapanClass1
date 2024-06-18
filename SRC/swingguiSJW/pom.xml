@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
  
     <groupId>swing</groupId>
-    <artifactId>swinggui</artifactId>
+    <artifactId>swingguiSJW</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
  
-    <name>swinggui</name>
+    <name>swingguiSJW</name>
     <url>http://www.example.com</url>
  
     <properties>
