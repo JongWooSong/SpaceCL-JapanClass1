@@ -3,6 +3,7 @@ package swing.swinggui;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class TotalQueryExe {
 
@@ -23,10 +24,6 @@ public class TotalQueryExe {
 		Connection conn = null;
 		
 		try {
-			
-			//insert, update, delete
-			PreparedStatement pstmt = null;
-		
 			//1.드라이버 로딩
 			Class.forName("com.mysql.cj.jdbc.Driver"); //JDBC Mysql Driver (pom.xml)
 			
@@ -65,7 +62,11 @@ public class TotalQueryExe {
 			e.printStackTrace();
 			
 			if(conn != null) {
-				conn.rollback();
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 		
