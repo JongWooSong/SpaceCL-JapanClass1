@@ -21,12 +21,11 @@ public class Doit2Insert {
 	}
 	
 	
-	public void insert(DoitBean insBean) throws Exception {
+	public void insert(Connection conn, DoitBean insBean) throws Exception {
 		
-	
 		//3.쿼리준비
 		String sql = "INSERT INTO doit2(col2, col4, col5, col6, col7) VALUES(?, ?, ?, ?, ?)";
-		pstmt = conn.prepareStatement(sql);
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		//4.데이터 binding
 		pstmt.setString(1, insBean.getCol2() );
