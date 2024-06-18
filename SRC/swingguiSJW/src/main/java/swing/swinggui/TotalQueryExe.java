@@ -2,7 +2,6 @@ package swing.swinggui;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TotalQueryExe {
@@ -18,7 +17,7 @@ public class TotalQueryExe {
 		doitBean.setCol2("세번째");
 		doitBean.setCol4("3333333");
 		doitBean.setCol5("44444444");
-		doitBean.setCol6("55555");
+		doitBean.setCol6("5555");
 		doitBean.setCol7("66666666");
 		
 		Connection conn = null;
@@ -50,20 +49,21 @@ public class TotalQueryExe {
 			dSelect.select(conn);
 		
 			//delete 실행
-			doitBean.setCol1("101");
+			doitBean.setCol1("10000");
 			dDel.delete(conn, doitBean);
 			
 			//select 실행 
 			dSelect.select(conn);
 			
 			conn.commit();
-			
+			System.out.println("커밋 됨");
 		} catch(Exception e) {
 			e.printStackTrace();
 			
 			if(conn != null) {
 				try {
 					conn.rollback();
+					System.out.println("롤백 됨");
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

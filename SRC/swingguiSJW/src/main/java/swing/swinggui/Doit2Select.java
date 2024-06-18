@@ -6,10 +6,11 @@ import java.sql.Statement;
 
 public class Doit2Select {
 
-	public void select(Connection conn) {
+	public DoitBean select(Connection conn) {
 
 		//select
 		Statement stmt = null;
+		DoitBean doitBean = new DoitBean();
 		
 		try {
 			//3.쿼리 수행을 위한 Statment 객체 생성
@@ -33,12 +34,15 @@ public class Doit2Select {
 				);
 			}
 			
+			//TODO 마지막 last_inserted_id() 를 통해 조회된 값을 
+			//TODO doitBean 으로 반환하는 코드를 작성하시오.
+			//TODO 돌발퀴즈!
 			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		
+		return doitBean;
 	}
 
 }
