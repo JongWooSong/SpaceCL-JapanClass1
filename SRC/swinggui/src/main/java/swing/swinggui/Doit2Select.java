@@ -1,27 +1,17 @@
 package swing.swinggui;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Doit2Select {
 
-	public static void main(String[] args) {
+	public void select(Connection conn) {
 
-		Connection conn = null;
 		//select
 		Statement stmt = null;
 		
 		try {
-			//1.드라이버 로딩
-			Class.forName("com.mysql.cj.jdbc.Driver"); //JDBC Mysql Driver (pom.xml)
-			
-			//2.연결하기
-			String url = "jdbc:mysql://localhost/studydb1";
-			conn = DriverManager.getConnection(url, "spacecl", "1234"); //id, pw로 디비연결
-			System.out.println("디비 연결 성공!!!");
-			
 			//3.쿼리 수행을 위한 Statment 객체 생성
 			stmt = conn.createStatement();
 			

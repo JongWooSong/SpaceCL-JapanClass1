@@ -17,49 +17,34 @@ public class Doit2Insert {
 		doitBean.setCol6("666");
 		doitBean.setCol7("777");
 		
-		doit2Insert.insert(doitBean);
+		//doit2Insert.insert(doitBean);
 	}
 	
 	
-	public void insert(DoitBean insBean) {
+	public void insert(DoitBean insBean) throws Exception {
 		
-		Connection conn = null;
-		//insert, update, delete
-		PreparedStatement pstmt = null;
+	
+		//3.쿼리준비
+		String sql = "INSERT INTO doit2(col2, col4, col5, col6, col7) VALUES(?, ?, ?, ?, ?)";
+		pstmt = conn.prepareStatement(sql);
 		
-		try { 
-			//1.드라이버 로딩
-			Class.forName("com.mysql.cj.jdbc.Driver"); //JDBC Mysql Driver (pom.xml)
-			
-			//2.연결하기
-			String url = "jdbc:mysql://localhost/studydb1";
-			conn = DriverManager.getConnection(url, "spacecl", "1234"); //id, pw로 디비연결
-			System.out.println("디비 연결 성공!!!");
-			
-			//3.쿼리준비
-			String sql = "INSERT INTO doit2(col2, col4, col5, col6, col7) VALUES(?, ?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			
-			//4.데이터 binding
-			pstmt.setString(1, insBean.getCol2() );
-			pstmt.setString(2, insBean.getCol4());
-			pstmt.setString(3, insBean.getCol5());
-			pstmt.setString(4, insBean.getCol6());
-			pstmt.setString(5, insBean.getCol7());
-			
-			//5.쿼리실행 
-			int cnt = pstmt.executeUpdate();
-			//insert 된 row 수
-			if(cnt == 0) {
-				System.out.println("데이터 입력 실패");
-			} else {
-				System.out.println("데이터 입력 성공");
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
+		//4.데이터 binding
+		pstmt.setString(1, insBean.getCol2() );
+		pstmt.setString(2, insBean.getCol4());
+		pstmt.setString(3, insBean.getCol5());
+		pstmt.setString(4, insBean.getCol6());
+		pstmt.setString(5, insBean.getCol7());
+		
+		//5.쿼리실행 
+		int cnt = pstmt.executeUpdate();
+		//insert 된 row 수
+		if(cnt == 0) {
+			System.out.println("데이터 입력 실패");
+			throw new Exception("데이터 Insert 실패");
+		} else {
+			System.out.println("데이터 입력 성공");
 		}
-		
+			
 	}
 	
 }

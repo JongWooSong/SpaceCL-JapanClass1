@@ -12,10 +12,10 @@ public class Doit2Delete {
 		DoitBean doitBean = new DoitBean();
 		doitBean.setCol1("102");
 		
-		doit2Update.update(doitBean);
+		doit2Update.delete(doitBean);
 	}
 	
-	public void update(DoitBean updBean) {
+	public void delete(DoitBean updBean) {
 		Connection conn = null;
 		//insert, update, delete
 		PreparedStatement pstmt = null;
