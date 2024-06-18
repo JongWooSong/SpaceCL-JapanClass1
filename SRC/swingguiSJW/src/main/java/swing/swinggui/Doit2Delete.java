@@ -20,14 +20,6 @@ public class Doit2Delete {
 		//insert, update, delete
 		PreparedStatement pstmt = null;
 
-		//1.드라이버 로딩
-		Class.forName("com.mysql.cj.jdbc.Driver"); //JDBC Mysql Driver (pom.xml)
-		
-		//2.연결하기
-		String url = "jdbc:mysql://localhost/studydb1";
-		conn = DriverManager.getConnection(url, "spacecl", "1234"); //id, pw로 디비연결
-		System.out.println("디비 연결 성공!!!");
-		
 		//3.쿼리준비
 		String sql = "DELETE FROM doit2 WHERE col1=?";
 		pstmt = conn.prepareStatement(sql);

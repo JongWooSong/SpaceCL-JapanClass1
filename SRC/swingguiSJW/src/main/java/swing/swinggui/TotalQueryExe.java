@@ -34,27 +34,27 @@ public class TotalQueryExe {
 			conn.setAutoCommit(false);
 			
 			//insert 실행 
-			dIns.insert(conn, doitBean);
+			String lastInsertId = dIns.insert(conn, doitBean);
 			
 			//select 실행 
-			DoitBean selBean = dSelect.select(conn);
-			
+			DoitBean selBean = dSelect.select(conn, lastInsertId);
+			System.out.println("totalQueryExe - selectBean :: " + selBean.getCol1() + ", " + selBean.getCol2() );
 			
 			//update 실행
-			doitBean.setCol1("107");
-			doitBean.setCol2("세번째-업데이트됨!!!");
+			doitBean.setCol1(lastInsertId);
+			doitBean.setCol2("세번째-업데이트됨!!!" + lastInsertId);
 			doitBean.setCol4("333333377773333");
 			dUpdate.update(conn, doitBean);
 			
 			//select 실행 
-			dSelect.select(conn);
+			dSelect.select(conn, null);
 		
 			//delete 실행
-			doitBean.setCol1("10000");
+			doitBean.setCol1(lastInsertId);
 			dDel.delete(conn, doitBean);
 			
 			//select 실행 
-			dSelect.select(conn);
+			dSelect.select(conn, null);
 			
 			conn.commit();
 			System.out.println("커밋 됨");
