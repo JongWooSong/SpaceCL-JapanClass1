@@ -1,8 +1,8 @@
 package swing.swinggui;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Doit2Insert {
 
@@ -23,6 +23,8 @@ public class Doit2Insert {
 	
 	public String insert(Connection conn, DoitBean insBean) throws Exception {
 		
+		String lastInsertId = null;
+		
 		//3.쿼리준비
 		String sql = "INSERT INTO doit2(col2, col4, col5, col6, col7) VALUES(?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -37,16 +39,24 @@ public class Doit2Insert {
 		//5.쿼리실행 
 		int cnt = pstmt.executeUpdate();
 		
-		//TODO select select last_insert_id();
-		
 		//insert 된 row 수
 		if(cnt == 0) {
 			System.out.println("데이터 입력 실패");
 			throw new Exception("데이터 Insert 실패");
 		} else {
 			System.out.println("데이터 입력 성공");
+			
+			//TODO select select last_insert_id();
+			String sql2 = "select last_insert_id()";
+			ResultSet rs = pstmt.executeQuery(sql2);
+			if(rs.next()) {
+				lastInsertId = rs.getString(1);
+			}
+			
 		}
 			
-	}
+		return lastInsertId;
+		
+	}//end method
 	
 }

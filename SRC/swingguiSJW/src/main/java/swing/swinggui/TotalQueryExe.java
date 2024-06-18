@@ -37,7 +37,8 @@ public class TotalQueryExe {
 			dIns.insert(conn, doitBean);
 			
 			//select 실행 
-			dSelect.select(conn);
+			DoitBean selBean = dSelect.select(conn);
+			
 			
 			//update 실행
 			doitBean.setCol1("107");
