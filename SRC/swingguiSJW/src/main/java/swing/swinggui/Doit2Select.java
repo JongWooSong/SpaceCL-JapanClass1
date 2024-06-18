@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class Doit2Select {
 
-	public DoitBean select(Connection conn) {
+	public DoitBean select(Connection conn, String col1) {
 
 		//select
 		Statement stmt = null;
