@@ -123,9 +123,13 @@ public class MemberCRUD extends CommonCRUD {
 		}
 		
 		return mBean;
+	}//end method
+	
+	
+	//TODO ID, PW 로 해당멤버를 찾는 로직을 구현하시오. (안하면 화장실 3시간 못감)
+	public MemberBean getFindMember(String id, String pw) {
+		return null;
 	}
-	
-	
 	
 	
 	
