@@ -2,6 +2,10 @@ package board.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberCRUD extends CommonCRUD {
 
@@ -35,6 +39,65 @@ public class MemberCRUD extends CommonCRUD {
 		}
 		
 		return cnt;
+	};
+	
+	/**
+	 * 회원 리스트를 취득한다.
+	 * @return
+	 */
+	public List<MemberBean> getMemberList() {
+		
+		Connection conn = getConnection();
+		List<MemberBean> list = new ArrayList<MemberBean>();
+		
+		try {
+			//3.쿼리 수행을 위한 Statment 객체 생성
+			Statement stmt = conn.createStatement();
+			
+			//4.쿼리 작성
+			String sql = "select member_no, id, pw, name, email, addr, birthdate, hp, reg_dt, last_login_dt";
+			sql += " from member";
+			
+			//5.쿼리수행
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			//6.쿼리 실행결과 출력하기
+			while(rs.next()) { //1개의 row 씩 진행 
+				MemberBean bean = new MemberBean();
+				bean.setMemberNo( rs.getString("member_no") );
+				bean.setId( rs.getString("id") );
+				bean.setPw( rs.getString("pw") );
+				bean.setName( rs.getString("name") );
+				bean.setEmail( rs.getString("email") );
+				bean.setAddr( rs.getString("addr") );
+				bean.setBirthdate( rs.getString("birthdate") );
+				bean.setHp( rs.getString("hp") );
+				bean.setRegDt( rs.getString("reg_dt") );
+				bean.setLastLoginDt( rs.getString("last_login_dt") );
+				
+				//add list
+				list.add(bean);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
+	
+	
+	//TODO 회원 ID 를 받아서 회원정보를 취득하는 메서드를 작성하시오! 
+	//(안하면 2시간 화장실 안보내줌)
+	public MemberBean getMember(String id) {
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
