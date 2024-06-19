@@ -19,7 +19,7 @@ public class CommonCRUD {
 				
 				//2.연결하기
 				String url = "jdbc:mysql://localhost/" + DB_NAME;
-				mConnection = DriverManager.getConnection(url, "spacecl", "1234"); //id, pw로 디비연결
+				mConnection = DriverManager.getConnection(url, "root", "1234"); //id, pw로 디비연결
 			}
 			System.out.println("디비 연결 성공!!!");
 		} catch(Exception e) {
