@@ -90,7 +90,39 @@ public class MemberCRUD extends CommonCRUD {
 	//TODO 회원 ID 를 받아서 회원정보를 취득하는 메서드를 작성하시오! 
 	//(안하면 2시간 화장실 안보내줌)
 	public MemberBean getMember(String id) {
-		return null;
+		Connection conn = getConnection();
+		MemberBean mBean = new MemberBean();
+		
+		try {
+			//3.쿼리 수행을 위한 Statment 객체 생성
+			Statement stmt = conn.createStatement();
+			
+			//4.쿼리 작성
+			String sql = "select member_no, id, pw, name, email, addr, birthdate, hp, reg_dt, last_login_dt";
+			sql += " from member where id = '" + id +"'";
+			
+			//5.쿼리수행
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			//6.쿼리 실행결과 출력하기
+			while(rs.next()) { //1개의 row 씩 진행 
+				mBean.setMemberNo( rs.getString("member_no") );
+				mBean.setId( rs.getString("id") );
+				mBean.setPw( rs.getString("pw") );
+				mBean.setName( rs.getString("name") );
+				mBean.setEmail( rs.getString("email") );
+				mBean.setAddr( rs.getString("addr") );
+				mBean.setBirthdate( rs.getString("birthdate") );
+				mBean.setHp( rs.getString("hp") );
+				mBean.setRegDt( rs.getString("reg_dt") );
+				mBean.setLastLoginDt( rs.getString("last_login_dt") );
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mBean;
 	}
 	
 	

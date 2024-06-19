@@ -32,6 +32,13 @@ public class TestQuery {
 			}
 		}
 		
+		//회원 1건 정보 취득
+		MemberBean mBean = memCRUD.getMember("asdfff");
+		mBean.printAll();
+		
+		
+		
+		
 	}//end method;
 
 }
