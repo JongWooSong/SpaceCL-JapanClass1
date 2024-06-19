@@ -13,7 +13,12 @@ public class MemberBean {
 	private String regDt;
 	private String lastLoginDt;
 	
-	
+	public void printAll() {
+		System.out.println( 
+			memberNo + ", " + id + ", " + pw + ", " + name + ", " + email + ", " 
+			+ addr + ", " + birthdate + ", " + hp + ", " + regDt + ", " + lastLoginDt 
+		);
+	}
 	
 	public String getMemberNo() {
 		return memberNo;

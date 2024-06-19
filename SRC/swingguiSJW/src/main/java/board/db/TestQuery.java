@@ -27,6 +27,8 @@ public class TestQuery {
 		if(list != null && list.size() > 0) {
 			for(int i=0; i<list.size(); i++) {
 				MemberBean mb = list.get(i);
+				//print
+				mb.printAll();
 			}
 		}
 		
