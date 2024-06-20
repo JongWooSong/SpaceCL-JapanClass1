@@ -126,9 +126,39 @@ public class MemberCRUD extends CommonCRUD {
 	}//end method
 	
 	
-	//TODO ID, PW 로 해당멤버를 찾는 로직을 구현하시오. (안하면 화장실 3시간 못감)
-	public MemberBean getFindMember(String id, String pw) {
-		return null;
+	/**
+	 * ID, PW 로 해당멤버를 찾는 로직을 구현하시오. (안하면 화장실 3시간 못감)
+	 * @param id
+	 * @param pw
+	 * @return true:해당멤버존재, false:멤버존재하지 않음
+	 */
+	public boolean getFindMember(String id, String pw) {
+		boolean isRtn = false;
+		
+		Connection conn = getConnection();
+		
+		try {
+			//3.쿼리 수행을 위한 Statment 객체 생성
+			Statement stmt = conn.createStatement();
+			
+			//4.쿼리 작성
+			String sql = "select count(*)";
+			sql += " from member where id = '" + id +"' and pw='" + pw + "'";
+			
+			//5.쿼리수행
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			//6.쿼리 실행결과 출력하기
+			rs.next();
+			int cnt = rs.getInt(1);
+			if(cnt > 0) {
+				isRtn = true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return isRtn;
 	}
 	
 	

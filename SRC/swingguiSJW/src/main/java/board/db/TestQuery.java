@@ -23,18 +23,23 @@ public class TestQuery {
 //		}
 		
 		//회원 리스트 취득
-		List<MemberBean> list = memCRUD.getMemberList();
-		if(list != null && list.size() > 0) {
-			for(int i=0; i<list.size(); i++) {
-				MemberBean mb = list.get(i);
-				//print
-				mb.printAll();
-			}
-		}
+//		List<MemberBean> list = memCRUD.getMemberList();
+//		if(list != null && list.size() > 0) {
+//			for(int i=0; i<list.size(); i++) {
+//				MemberBean mb = list.get(i);
+//				//print
+//				mb.printAll();
+//			}
+//		}
 		
 		//회원 1건 정보 취득
-		MemberBean mBean = memCRUD.getMember("asdfff");
-		mBean.printAll();
+//		MemberBean mBean = memCRUD.getMember("asdfff");
+//		mBean.printAll();
+
+		
+		//회원 id, pw 조회
+		boolean isFind = memCRUD.getFindMember("asdfff", "abcd1234");
+		System.out.println(isFind);
 		
 		
 		
