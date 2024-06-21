@@ -1,6 +1,7 @@
 package board.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 
@@ -46,7 +47,8 @@ public class BoardWriteModal extends JDialog {
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		Label lblTitle = new Label("제목:  ");
+		Label lblTitle = new Label("Title:");
+		lblTitle.setPreferredSize(new Dimension(50, 50));
 		panel.add(lblTitle, BorderLayout.WEST);
 		
 		txtTitle = new JTextField();
@@ -67,15 +69,15 @@ public class BoardWriteModal extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton btnOk = new JButton("OK");
+				btnOk.setActionCommand("OK");
+				buttonPane.add(btnOk);
+				getRootPane().setDefaultButton(btnOk);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btnCancel = new JButton("Cancel");
+				btnCancel.setActionCommand("Cancel");
+				buttonPane.add(btnCancel);
 			}
 		}
 	}
