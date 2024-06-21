@@ -37,7 +37,8 @@ public class MainBoard2 extends JFrame {
 
 	private MemberBean mMemBean;
 	
-
+	BoardWriteModal dialog;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -72,10 +73,17 @@ public class MainBoard2 extends JFrame {
 		brnWrite.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BoardWriteModal dialog = new BoardWriteModal(mMemBean);
-				dialog.setModal(true);
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				if(dialog == null) {
+					dialog = new BoardWriteModal(mMemBean);
+					
+				}
+				if( !dialog.isVisible() ) {
+					dialog.setModal(true);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				}  else {
+					dialog.setVisible(true);
+				}
 			}
 		});
 		

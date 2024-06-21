@@ -4,16 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import board.db.BoardBean;
+import board.db.BoardCRUD;
 import board.db.MemberBean;
 
 public class BoardWriteModal extends JDialog {
@@ -22,7 +27,7 @@ public class BoardWriteModal extends JDialog {
 	private final JPanel contentPane = new JPanel();
 	private JTextField txtTitle;
 	private MemberBean mMemberBean;
-
+	private BoardCRUD mBoardCURD = new BoardCRUD();
 	/**
 	 * Create the dialog.
 	 */
@@ -65,6 +70,26 @@ public class BoardWriteModal extends JDialog {
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				getRootPane().setDefaultButton(btnOk);
+				
+				btnOk.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BoardBean boardBean = new BoardBean();
+						boardBean.setTitle( txtTitle.getText() );
+						boardBean.setContents( txtContent.getText()  );
+						boardBean.setMemberNo( mMemberBean.getMemberNo() );
+						
+						int cnt = mBoardCURD.insertBoard(boardBean);
+						if( cnt > 0 ) {
+							//저장완료
+							JOptionPane.showMessageDialog(null, "저장에 성공 하였습니다.");
+							BoardWriteModal.this.dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "저장에 실패 하였습니다.");
+						}
+					}
+				});
+				
 			}
 			{
 				JButton btnCancel = new JButton("Cancel");
