@@ -86,6 +86,12 @@ public class Login extends JFrame {
 			boolean isFind = mMemCRUD.getFindMember(id, pw);
 			if(isFind) {
 				JOptionPane.showMessageDialog(null, "로그인 성공");
+				
+				MainBoard2 board = new MainBoard2();
+				board.setVisible(true);
+				//로그인 화면 숨김
+				Login.this.setVisible(false);
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "로그인 실패");
 			}
