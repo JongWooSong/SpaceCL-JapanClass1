@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
+import board.db.MemberBean;
 import board.db.MemberCRUD;
 
 public class Login extends JFrame {
@@ -86,8 +87,10 @@ public class Login extends JFrame {
 			boolean isFind = mMemCRUD.getFindMember(id, pw);
 			if(isFind) {
 				JOptionPane.showMessageDialog(null, "로그인 성공");
-				
-				MainBoard2 board = new MainBoard2();
+
+				//멤버정보 조회
+				MemberBean memberBean = mMemCRUD.getMember(id);
+				MainBoard2 board = new MainBoard2(memberBean);
 				board.setVisible(true);
 				//로그인 화면 숨김
 				Login.this.setVisible(false);

@@ -14,29 +14,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import board.db.MemberBean;
+
 public class BoardWriteModal extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPane = new JPanel();
 	private JTextField txtTitle;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			BoardWriteModal dialog = new BoardWriteModal();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private MemberBean mMemberBean;
 
 	/**
 	 * Create the dialog.
 	 */
-	public BoardWriteModal() {
+	public BoardWriteModal(MemberBean memBean) {
+		mMemberBean = memBean;
+		
 		setBounds(100, 100, 649, 636);
 		getContentPane().setLayout(new BorderLayout());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

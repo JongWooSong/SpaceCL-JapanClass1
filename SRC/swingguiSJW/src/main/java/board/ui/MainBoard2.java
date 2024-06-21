@@ -1,25 +1,19 @@
 package board.ui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.TableColumn;
-
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.JScrollBar;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import board.db.MemberBean;
 
 public class MainBoard2 extends JFrame {
 
@@ -41,26 +35,15 @@ public class MainBoard2 extends JFrame {
 	private JTable boardTable;
 	private JButton brnWrite;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainBoard2 frame = new MainBoard2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private MemberBean mMemBean;
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public MainBoard2() {
+	public MainBoard2(MemberBean memberBean) {
+		mMemBean = memberBean;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 512);
 		contentPane = new JPanel();
@@ -86,6 +69,15 @@ public class MainBoard2 extends JFrame {
 		brnWrite = new JButton("글쓰기");
 		panel.add(brnWrite);
 		
+		brnWrite.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BoardWriteModal dialog = new BoardWriteModal(mMemBean);
+				dialog.setModal(true);
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
 		
 		
 		
