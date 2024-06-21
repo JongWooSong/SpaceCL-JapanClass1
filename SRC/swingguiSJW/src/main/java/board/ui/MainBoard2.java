@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 public class MainBoard2 extends JFrame {
 
@@ -37,17 +38,8 @@ public class MainBoard2 extends JFrame {
 	private JLabel lblPage8;
 	private JLabel lblPage9;
 	private JLabel lblPage10;
-	private JPanel panel_2;
-	private JPanel pnlArticle1;
-	private JLabel lblNewLabel;
-	private JButton btnNewButton_2;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JPanel pnlArticle1_1;
-	private JLabel lblNewLabel_3;
-	private JButton btnNewButton_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
+	private JTable boardTable;
+	private JButton brnWrite;
 
 	/**
 	 * Launch the application.
@@ -91,48 +83,8 @@ public class MainBoard2 extends JFrame {
 		});
 		panel.add(btnSearch);
 		
-		panel_2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.LEFT);
-		contentPane.add(panel_2, BorderLayout.CENTER);
-		
-		pnlArticle1_1 = new JPanel();
-		panel_2.add(pnlArticle1_1);
-		
-		lblNewLabel_3 = new JLabel("1200");
-		lblNewLabel_3.setFont(new Font("굴림", Font.BOLD, 20));
-		pnlArticle1_1.add(lblNewLabel_3);
-		
-		btnNewButton_3 = new JButton("이미지");
-		pnlArticle1_1.add(btnNewButton_3);
-		
-		lblNewLabel_4 = new JLabel("Board Titles....");
-		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 20));
-		pnlArticle1_1.add(lblNewLabel_4);
-		
-		lblNewLabel_5 = new JLabel("조회수");
-		lblNewLabel_5.setFont(new Font("돋움", Font.PLAIN, 25));
-		pnlArticle1_1.add(lblNewLabel_5);
-		
-		pnlArticle1 = new JPanel();
-		FlowLayout fl_pnlArticle1 = (FlowLayout) pnlArticle1.getLayout();
-		fl_pnlArticle1.setVgap(15);
-		panel_2.add(pnlArticle1);
-		
-		lblNewLabel = new JLabel("1200");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
-		pnlArticle1.add(lblNewLabel);
-		
-		btnNewButton_2 = new JButton("이미지");
-		pnlArticle1.add(btnNewButton_2);
-		
-		lblNewLabel_1 = new JLabel("Board Titles....");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 20));
-		pnlArticle1.add(lblNewLabel_1);
-		
-		lblNewLabel_2 = new JLabel("조회수");
-		lblNewLabel_2.setFont(new Font("돋움", Font.PLAIN, 25));
-		pnlArticle1.add(lblNewLabel_2);
+		brnWrite = new JButton("글쓰기");
+		panel.add(brnWrite);
 		
 		
 		
@@ -182,6 +134,9 @@ public class MainBoard2 extends JFrame {
 		
 		btnNewButton = new JButton("다음");
 		panel_1.add(btnNewButton);
+		
+		boardTable = new JTable();
+		contentPane.add(boardTable, BorderLayout.CENTER);
 		
 	
 	}
