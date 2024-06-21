@@ -3,6 +3,8 @@ package board.ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -80,16 +82,14 @@ public class MainBoard2 extends JFrame {
 				if( !dialog.isVisible() ) {
 					dialog.setModal(true);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.clearInputs();
 					dialog.setVisible(true);
 				}  else {
+					dialog.clearInputs();
 					dialog.setVisible(true);
 				}
 			}
 		});
-		
-		
-		
-		
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
@@ -138,7 +138,45 @@ public class MainBoard2 extends JFrame {
 		boardTable = new JTable();
 		contentPane.add(boardTable, BorderLayout.CENTER);
 		
+		addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				System.out.println("windowOpened()");
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				System.out.println("windowIconified()");
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				System.out.println("windowDeiconified()");
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				System.out.println("windowDeactivated()");
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.println("windowClosing()");
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				System.out.println("windowActivated()");
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				System.out.println("windowActivated()");
+			}
+		});
 	
-	}
+	};//end 생성자
 
 }

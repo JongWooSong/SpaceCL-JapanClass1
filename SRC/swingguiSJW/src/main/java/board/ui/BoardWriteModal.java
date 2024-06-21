@@ -26,6 +26,7 @@ public class BoardWriteModal extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPane = new JPanel();
 	private JTextField txtTitle;
+	private JTextArea txtContent;
 	private MemberBean mMemberBean;
 	private BoardCRUD mBoardCURD = new BoardCRUD();
 	/**
@@ -59,7 +60,7 @@ public class BoardWriteModal extends JDialog {
 		JLabel lblNewLabel = new JLabel("본문내용:");
 		panel_2.add(lblNewLabel);
 		
-		JTextArea txtContent = new JTextArea();
+		txtContent = new JTextArea();
 		panel_2.add(txtContent);
 		{
 			JPanel buttonPane = new JPanel();
@@ -97,6 +98,11 @@ public class BoardWriteModal extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+	}; //end 생성자
+	
+	public void clearInputs() {
+		txtTitle.setText("");
+		txtContent.setText("");
 	}
 
 }
