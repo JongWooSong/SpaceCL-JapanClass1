@@ -191,16 +191,16 @@ public class MainBoard2 extends JFrame {
 	public void showTable(List<BoardBean> boardList) {
 		
 		//TODO 출력 
-		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수" };
+		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
 		String contents[][] = {
-				{"이정현", "50", "60", "70"},
-				{"김영호", "50", "60", "70"}
+				{"이정현", "50", "60", "70", "2024-03-12"},
+				{"김영호", "50", "60", "70", "2024-03-12"}
 		};
 		
 		JTable boardTable = new JTable(contents, header);
 		JScrollPane scrollTable = new JScrollPane(boardTable);
 		scrollTable.setLocation(0, 0);
-		//전체 가로, 세로 크기
+		//전체 가로, 세로 크기 
 		scrollTable.setSize(pnlTable.getWidth(), pnlTable.getHeight());
 		
 		//add component
