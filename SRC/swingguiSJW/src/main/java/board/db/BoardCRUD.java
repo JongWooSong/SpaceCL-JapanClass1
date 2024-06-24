@@ -54,8 +54,14 @@ public class BoardCRUD extends CommonCRUD {
 			Statement stmt = conn.createStatement();
 			
 			//4.쿼리 작성
-			String sql = "select board_no, title, contents, count, secret_yn, member_no, reg_dt";
-			sql += " from board order by board_no desc limit 10";
+			String sql = 
+			"select "
+				+" board_no, title, contents, count, secret_yn, member_no, "
+				+" (select name from member where member_no = b.member_no) memberName, "
+				+" reg_dt "
+			+ "from board b "
+			+ "order by board_no desc "
+			+ "limit 10";
 			
 			System.out.println(sql);
 			
@@ -71,6 +77,7 @@ public class BoardCRUD extends CommonCRUD {
 				bean.setCount( rs.getString("count") );
 				bean.setSecretYn( rs.getString("secret_yn") );
 				bean.setMemberNo( rs.getString("member_no") );
+				bean.setMemberName( rs.getString("memberName") );
 				bean.setRegDt( rs.getString("reg_dt") );
 				
 				list.add(bean);

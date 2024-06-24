@@ -11,6 +11,7 @@ public class BoardBean {
 	private String count;
 	private String secretYn;
 	private String memberNo;
+	private String memberName;
 	private String regDt;
 	
 }
