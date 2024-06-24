@@ -55,13 +55,13 @@ public class BoardCRUD extends CommonCRUD {
 			
 			//4.쿼리 작성
 			String sql = 
-			"select "
+			" select "
 				+" board_no, title, contents, count, secret_yn, member_no, "
 				+" (select name from member where member_no = b.member_no) memberName, "
 				+" reg_dt "
-			+ "from board b "
-			+ "order by board_no desc "
-			+ "limit 10";
+			+ " from board b "
+			+ " order by board_no desc "
+			+ " limit 10";
 			
 			System.out.println(sql);
 			
