@@ -29,11 +29,14 @@ public class BoardWriteModal extends JDialog {
 	private JTextArea txtContent;
 	private MemberBean mMemberBean;
 	private BoardCRUD mBoardCURD = new BoardCRUD();
+	private MainBoard2 mMainBoard2;
+	
 	/**
 	 * Create the dialog.
 	 */
-	public BoardWriteModal(MemberBean memBean) {
+	public BoardWriteModal(MemberBean memBean, MainBoard2 mainBoard2) {
 		mMemberBean = memBean;
+		mMainBoard2 = mainBoard2;
 		
 		setBounds(100, 100, 649, 636);
 		getContentPane().setLayout(new BorderLayout());
@@ -85,6 +88,8 @@ public class BoardWriteModal extends JDialog {
 							//저장완료
 							JOptionPane.showMessageDialog(null, "저장에 성공 하였습니다.");
 							BoardWriteModal.this.dispose();
+							//리스트 새롭게 조회
+							mainBoard2.showTable( mBoardCURD.getBoardList(0) );
 						} else {
 							JOptionPane.showMessageDialog(null, "저장에 실패 하였습니다.");
 						}

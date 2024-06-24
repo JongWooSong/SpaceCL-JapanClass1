@@ -3,8 +3,6 @@ package board.ui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.List;
 import java.util.Vector;
 
@@ -51,6 +49,8 @@ public class MainBoard2 extends JFrame {
 	private BoardWriteModal dialog;
 	private JPanel pnlTable;
 	private JTable boardTable;
+	private BoardCRUD mBoardCRUD = new BoardCRUD();
+	
 	
 	/**
 	 * Create the frame.
@@ -87,8 +87,7 @@ public class MainBoard2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(dialog == null) {
-					dialog = new BoardWriteModal(mMemBean);
-					
+					dialog = new BoardWriteModal(mMemBean, MainBoard2.this);
 				}
 				if( !dialog.isVisible() ) {
 					dialog.setModal(true);
@@ -149,6 +148,9 @@ public class MainBoard2 extends JFrame {
 		pnlTable = new JPanel();
 		contentPane.add(pnlTable, BorderLayout.CENTER);
 		pnlTable.setLayout(new BorderLayout(0, 0));
+		
+		//리스트를 읽어온다.
+		showTable( mBoardCRUD.getBoardList(0) );
 	
 	};//end 생성자
 
