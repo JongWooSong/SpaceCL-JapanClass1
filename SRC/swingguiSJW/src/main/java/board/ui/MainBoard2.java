@@ -15,11 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 import board.db.BoardBean;
 import board.db.MemberBean;
@@ -45,8 +46,9 @@ public class MainBoard2 extends JFrame {
 
 	private MemberBean mMemBean;
 	
-	BoardWriteModal dialog;
+	private BoardWriteModal dialog;
 	private JPanel pnlTable;
+	private JTable boardTable;
 	
 	/**
 	 * Create the frame.
@@ -197,7 +199,33 @@ public class MainBoard2 extends JFrame {
 				{"김영호", "50", "60", "70", "2024-03-12"}
 		};
 		
-		JTable boardTable = new JTable(contents, header);
+		TableModel tableModel = new DefaultTableModel(contents, header);
+		
+		boardTable = new JTable(tableModel) {
+			//셀 편집을 못하도록 막는다.
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		//셀 값 가운데 정렬
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		boardTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		boardTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		boardTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		boardTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		boardTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		
+		//컬럼크기
+		TableColumnModel colModel = boardTable.getColumnModel();
+		colModel.getColumn(0).setPreferredWidth(15);
+		colModel.getColumn(1).setPreferredWidth(280);
+		colModel.getColumn(2).setPreferredWidth(30);
+		colModel.getColumn(3).setPreferredWidth(10);
+		
+		//스크롤 추가 
 		JScrollPane scrollTable = new JScrollPane(boardTable);
 		scrollTable.setLocation(0, 0);
 		//전체 가로, 세로 크기 
