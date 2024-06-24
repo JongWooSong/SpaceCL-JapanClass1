@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,14 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 
 import board.db.BoardBean;
+import board.db.BoardCRUD;
 import board.db.MemberBean;
 
 public class MainBoard2 extends JFrame {
@@ -194,12 +196,24 @@ public class MainBoard2 extends JFrame {
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
-		String contents[][] = {
-				{"이정현", "50", "60", "70", "2024-03-12"},
-				{"김영호", "50", "60", "70", "2024-03-12"}
-		};
+		String contents[][] = {};
 		
-		TableModel tableModel = new DefaultTableModel(contents, header);
+		DefaultTableModel tableModel = new DefaultTableModel(contents, header);
+		
+		if(boardList != null) {
+			for(int i=0; i<boardList.size(); i++) {
+				BoardBean bean = boardList.get(i);
+				
+				Vector<String> vector = new Vector<String>();
+				vector.add( bean.getBoardNo() );
+				vector.add( bean.getTitle() );
+				vector.add( bean.getMemberName() );
+				vector.add( bean.getCount() );
+				vector.add( bean.getRegDt() );
+				
+				tableModel.addRow(vector);
+			}//end for
+		}
 		
 		boardTable = new JTable(tableModel) {
 			//셀 편집을 못하도록 막는다.
@@ -228,6 +242,7 @@ public class MainBoard2 extends JFrame {
 		//스크롤 추가 
 		JScrollPane scrollTable = new JScrollPane(boardTable);
 		scrollTable.setLocation(0, 0);
+		scrollTable.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		//전체 가로, 세로 크기 
 		scrollTable.setSize(pnlTable.getWidth(), pnlTable.getHeight());
 		
@@ -241,7 +256,9 @@ public class MainBoard2 extends JFrame {
 		MemberBean mBean = new MemberBean();
 		MainBoard2 board = new MainBoard2(mBean);
 		board.setVisible(true);
-		board.showTable(null);
+		
+		BoardCRUD boardCRUD = new BoardCRUD();
+		board.showTable( boardCRUD.getBoardList(0) );
 	}
 	
 	
