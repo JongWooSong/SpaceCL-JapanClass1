@@ -144,6 +144,7 @@ public class MainBoard2 extends JFrame {
 		
 		pnlTable = new JPanel();
 		contentPane.add(pnlTable, BorderLayout.CENTER);
+		pnlTable.setLayout(new BorderLayout(0, 0));
 		
 		addWindowListener(new WindowListener() {
 			
@@ -190,26 +191,20 @@ public class MainBoard2 extends JFrame {
 	public void showTable(List<BoardBean> boardList) {
 		
 		//TODO 출력 
-		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
-		
-		DefaultTableModel tableModel = new DefaultTableModel(header, 0);
-		JTable boardTable = new JTable(tableModel) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false; //셀을 편집할 수 없게 한다.
-			}
+		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수" };
+		String contents[][] = {
+				{"이정현", "50", "60", "70"},
+				{"김영호", "50", "60", "70"}
 		};
 		
-		//셀값 가운데 정렬
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		boardTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		JTable boardTable = new JTable(contents, header);
 		JScrollPane scrollTable = new JScrollPane(boardTable);
-		
+		scrollTable.setLocation(0, 0);
+		//전체 가로, 세로 크기
+		scrollTable.setSize(pnlTable.getWidth(), pnlTable.getHeight());
 		
 		//add component
-		pnlTable.add(scrollTable);
+		pnlTable.add(scrollTable, BorderLayout.CENTER);
 		
 	}//end method
 	
