@@ -78,7 +78,7 @@ public class BoardCRUD extends CommonCRUD {
 		
 		Connection conn = getConnection();
 		List<BoardBean> list = new ArrayList<BoardBean>();
-		int startOffset = ((pageNo - 1) * 10) + 1; //공식
+		int startOffset = ((pageNo - 1) * 10); //공식
 		
 		try {
 			//3.쿼리 수행을 위한 Statment 객체 생성

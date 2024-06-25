@@ -34,8 +34,8 @@ public class MainBoard2 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtSearch;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton btnPageNext;
+	private JButton btnPagePrev;
 	private JLabel lblPage2;
 	private JLabel lblPage3;
 	private JLabel lblPage4;
@@ -57,6 +57,8 @@ public class MainBoard2 extends JFrame {
 	
 	//현재 페이지 번호를 저장하고 변수
 	public int mCurPageNo = 1; 
+	//전체페이지 수
+	public int mTotPageCnt;
 	
 	
 	/**
@@ -111,17 +113,13 @@ public class MainBoard2 extends JFrame {
 		JPanel pnlPaging = new JPanel();
 		contentPane.add(pnlPaging, BorderLayout.SOUTH);
 		
-		btnNewButton_1 = new JButton("이전");
-		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnPagePrev = new JButton("이전");
+		btnPagePrev.setHorizontalAlignment(SwingConstants.LEFT);
 		pnlPaging.setLayout(new BorderLayout(0, 0));
-		pnlPaging.add(btnNewButton_1, BorderLayout.WEST);
+		pnlPaging.add(btnPagePrev, BorderLayout.WEST);
 		
-		btnNewButton = new JButton("다음");
-		pnlPaging.add(btnNewButton, BorderLayout.EAST);
+		btnPageNext = new JButton("다음");
+		pnlPaging.add(btnPageNext, BorderLayout.EAST);
 		
 		//페이지 번호가 표시되는 영역(Panel)
 		pnlDispPage = new JPanel();
@@ -143,12 +141,35 @@ public class MainBoard2 extends JFrame {
 				showTable(mCurPageNo);
 			}
 		});
-	
+		
+		//이전 페이징 버튼
+		btnPagePrev.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(mCurPageNo > 1) {
+					showTable(mCurPageNo - 1);
+				}
+			}
+		});
+		
+		//다음 페이징 버튼
+		btnPageNext.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(mCurPageNo < mTotPageCnt) {
+					showTable(mCurPageNo + 1);
+				}
+			}
+		});
+		
 	};//end 생성자
 
 	//리스트 출력
 	public void showTable(int pageNo) {
 		
+		//멤버변수의 페이지값을 업데이트 해놓는다.
+		mCurPageNo = pageNo;
+				
 		//리스트 데이터 조회
 		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo, txtSearch.getText()); 
 		
@@ -157,9 +178,9 @@ public class MainBoard2 extends JFrame {
 		//추가
 		int listTotCnt = mBoardCRUD.getTotalListCnt( txtSearch.getText() );
 		//전체 페이지 갯수
-		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10.0 ) );
+		mTotPageCnt = (int)( Math.ceil( listTotCnt / 10.0 ) );
 		//전체 페이지 갯수만큼 돌면서 라벨을 추가한다.
-		for(int i=1; i<=totPageCnt; i++) {
+		for(int i=1; i<=mTotPageCnt; i++) {
 			SpaceCLButton lblPage;
 			if(pageNo == i) {
 				//현재 페이지 표시방법
@@ -193,8 +214,6 @@ public class MainBoard2 extends JFrame {
 		
 		//TODO 왕중요!!!! 다시 패널에 페이지 버튼을 그려야함.
 		pnlDispPage.revalidate();
-		
-		
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
