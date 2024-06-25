@@ -254,6 +254,10 @@ public class MainBoard2 extends JFrame {
 				if( e.getClickCount() == 2 && table.getSelectedRow() != -1 ) {
 					//TODO 더블클릭 이벤트 여기로 온다.
 					System.out.println("클릭한 row값: " + row);
+					
+					TableColumnModel model = table.getColumnModel();
+					
+					System.out.println("클릭한 테이블 고유번호: ???" );
 				}
 			}
 		});
