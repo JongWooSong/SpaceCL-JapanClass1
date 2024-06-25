@@ -76,6 +76,7 @@ public class BoardCRUD extends CommonCRUD {
 		
 		Connection conn = getConnection();
 		List<BoardBean> list = new ArrayList<BoardBean>();
+		int startOffset = ((pageNo - 1) * 10) + 1; //공식
 		
 		try {
 			//3.쿼리 수행을 위한 Statment 객체 생성
@@ -91,7 +92,7 @@ public class BoardCRUD extends CommonCRUD {
 			+ " where title like '%" + searchWord + "%'" 
 				+ " or contents like '%" + searchWord + "%'"	
 			+ " order by board_no desc "
-			+ " limit 10";
+			+ " limit " + startOffset + ", 10";
 			
 			System.out.println(sql);
 			

@@ -164,6 +164,11 @@ public class MainBoard2 extends JFrame {
 			} else {
 				lblPage = new Label(i + "");	
 			}
+			
+			//TODO 페이지 클릭 이벤트
+			//TODO 여기다 코딩
+			
+			
 			pnlDispPage.add(lblPage);
 		}
 		
