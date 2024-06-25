@@ -169,10 +169,15 @@ public class MainBoard2 extends JFrame {
 			
 			//TODO 페이지 클릭 이벤트
 			//TODO 여기다 코딩
-			lblPage.addActionListener(null)
+			lblPage.addActionListener(null);
 			
 			pnlDispPage.add(lblPage);
 		}
+		
+		//왕중요!!!! 다시 패널에 페이지 버튼을 그려야함.
+		pnlDispPage.revalidate()
+		
+		
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
