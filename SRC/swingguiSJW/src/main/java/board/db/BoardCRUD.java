@@ -60,6 +60,7 @@ public class BoardCRUD extends CommonCRUD {
 				+" (select name from member where member_no = b.member_no) memberName, "
 				+" reg_dt "
 			+ " from board b "
+			+ " where title like %" + searchWord + "%"	
 			+ " order by board_no desc "
 			+ " limit 10";
 			

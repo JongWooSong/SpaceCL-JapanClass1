@@ -150,12 +150,14 @@ public class MainBoard2 extends JFrame {
 		pnlTable.setLayout(new BorderLayout(0, 0));
 		
 		//리스트를 읽어온다.
-		showTable( mBoardCRUD.getBoardList(0) );
+		showTable(0);
 	
 	};//end 생성자
 
 	//리스트 출력
-	public void showTable(List<BoardBean> boardList) {
+	public void showTable(int pageNo) {
+		//DB조회
+		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo); 
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
@@ -210,6 +212,7 @@ public class MainBoard2 extends JFrame {
 		scrollTable.setSize(pnlTable.getWidth(), pnlTable.getHeight());
 		
 		//add component
+		pnlTable.removeAll();
 		pnlTable.add(scrollTable, BorderLayout.CENTER);
 		
 	}//end method
@@ -219,9 +222,7 @@ public class MainBoard2 extends JFrame {
 		MemberBean mBean = new MemberBean();
 		MainBoard2 board = new MainBoard2(mBean);
 		board.setVisible(true);
-		
-		BoardCRUD boardCRUD = new BoardCRUD();
-		board.showTable( boardCRUD.getBoardList(0) );
+		board.showTable( 0 );
 	}
 	
 	
