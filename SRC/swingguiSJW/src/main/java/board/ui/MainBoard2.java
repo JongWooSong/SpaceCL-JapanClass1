@@ -1,6 +1,8 @@
 package board.ui;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -32,7 +34,6 @@ public class MainBoard2 extends JFrame {
 	private JTextField txtSearch;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
-	private JLabel lblPage1;
 	private JLabel lblPage2;
 	private JLabel lblPage3;
 	private JLabel lblPage4;
@@ -50,6 +51,7 @@ public class MainBoard2 extends JFrame {
 	private JPanel pnlTable;
 	private JTable boardTable;
 	private BoardCRUD mBoardCRUD = new BoardCRUD();
+	private JPanel pnlDispPage;
 	
 	
 	/**
@@ -101,48 +103,25 @@ public class MainBoard2 extends JFrame {
 			}
 		});
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		JPanel pnlPaging = new JPanel();
+		contentPane.add(pnlPaging, BorderLayout.SOUTH);
 		
 		btnNewButton_1 = new JButton("이전");
+		btnNewButton_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel_1.add(btnNewButton_1);
-		
-		lblPage1 = new JLabel("1");
-		panel_1.add(lblPage1);
-		
-		lblPage2 = new JLabel("2");
-		panel_1.add(lblPage2);
-		
-		lblPage3 = new JLabel("3");
-		panel_1.add(lblPage3);
-		
-		lblPage4 = new JLabel("4");
-		panel_1.add(lblPage4);
-		
-		lblPage5 = new JLabel("5");
-		panel_1.add(lblPage5);
-		
-		lblPage6 = new JLabel("[6]");
-		panel_1.add(lblPage6);
-		
-		lblPage7 = new JLabel("7");
-		panel_1.add(lblPage7);
-		
-		lblPage8 = new JLabel("8");
-		panel_1.add(lblPage8);
-		
-		lblPage9 = new JLabel("9");
-		panel_1.add(lblPage9);
-		
-		lblPage10 = new JLabel("10");
-		panel_1.add(lblPage10);
+		pnlPaging.setLayout(new BorderLayout(0, 0));
+		pnlPaging.add(btnNewButton_1, BorderLayout.WEST);
 		
 		btnNewButton = new JButton("다음");
-		panel_1.add(btnNewButton);
+		pnlPaging.add(btnNewButton, BorderLayout.EAST);
+		
+		//페이지 번호가 표시되는 영역(Panel)
+		pnlDispPage = new JPanel();
+		pnlPaging.add(pnlDispPage, BorderLayout.CENTER);
+		pnlDispPage.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		pnlTable = new JPanel();
 		contentPane.add(pnlTable, BorderLayout.CENTER);
@@ -166,6 +145,18 @@ public class MainBoard2 extends JFrame {
 	public void showTable(int pageNo) {
 		//DB조회
 		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo, txtSearch.getText()); 
+		
+		//페이징 표시 
+		pnlDispPage.removeAll(); //기존 페이지 번호는 전체 삭제
+		//추가
+		int listTotCnt = mBoardCRUD.getTotalListCnt();
+		//전체 페이지 갯수
+		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10 ) );
+		//전체 페이지 갯수만큼 돌면서 라벨을 추가한다.
+		for(int i=1; i<=totPageCnt; i++) {
+			Label lblPage = new Label(i + "");
+			pnlDispPage.add(lblPage);
+		}
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };

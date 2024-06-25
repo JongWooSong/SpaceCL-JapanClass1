@@ -9,6 +9,9 @@ import java.util.List;
 
 public class BoardCRUD extends CommonCRUD {
 
+	public static void main(String[] args) {
+		System.out.println( new BoardCRUD().getTotalListCnt() );
+	}
 	
 	//TODO board 테이블에 boardBean 값을 insert 데이터 하는
 	//코드를 작성 하시오. (= insertMember() 참고해라)
@@ -29,6 +32,34 @@ public class BoardCRUD extends CommonCRUD {
 			
 			//5.쿼리실행 
 			cnt = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	/**
+	 * 전체 게시물의 갯수를 구한다.
+	 * @return
+	 */
+	public int getTotalListCnt() {
+		Connection conn = getConnection();
+		int cnt = 0;
+		
+		try {
+			//3.쿼리 수행을 위한 Statment 객체 생성
+			Statement stmt = conn.createStatement();
+			
+			//4.쿼리 작성
+			String sql = "select count(*) from board";
+			
+			//5.쿼리수행
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
