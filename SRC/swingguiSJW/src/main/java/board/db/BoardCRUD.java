@@ -10,7 +10,7 @@ import java.util.List;
 public class BoardCRUD extends CommonCRUD {
 
 	public static void main(String[] args) {
-		System.out.println( new BoardCRUD().getTotalListCnt() );
+		System.out.println( new BoardCRUD().getTotalListCnt("") );
 	}
 	
 	//TODO board 테이블에 boardBean 값을 insert 데이터 하는
@@ -43,7 +43,7 @@ public class BoardCRUD extends CommonCRUD {
 	 * 전체 게시물의 갯수를 구한다.
 	 * @return
 	 */
-	public int getTotalListCnt() {
+	public int getTotalListCnt(String searchWord) {
 		Connection conn = getConnection();
 		int cnt = 0;
 		
@@ -52,7 +52,9 @@ public class BoardCRUD extends CommonCRUD {
 			Statement stmt = conn.createStatement();
 			
 			//4.쿼리 작성
-			String sql = "select count(*) from board";
+			String sql = "select count(*) from board"
+					+ " where title like '%" + searchWord + "%'" 
+					+ " or contents like '%" + searchWord + "%'";
 			
 			//5.쿼리수행
 			ResultSet rs = stmt.executeQuery(sql);

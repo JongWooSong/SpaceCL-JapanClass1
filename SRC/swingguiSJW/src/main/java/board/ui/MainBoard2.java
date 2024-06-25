@@ -1,6 +1,7 @@
 package board.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -146,28 +147,29 @@ public class MainBoard2 extends JFrame {
 
 	//리스트 출력
 	public void showTable(int pageNo) {
-		//DB조회
+		
+		//리스트 데이터 조회
 		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo, txtSearch.getText()); 
 		
 		//페이징 표시 
 		pnlDispPage.removeAll(); //기존 페이지 번호는 전체 삭제
 		//추가
-		int listTotCnt = mBoardCRUD.getTotalListCnt();
+		int listTotCnt = mBoardCRUD.getTotalListCnt( txtSearch.getText() );
 		//전체 페이지 갯수
 		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10.0 ) );
 		//전체 페이지 갯수만큼 돌면서 라벨을 추가한다.
 		for(int i=1; i<=totPageCnt; i++) {
-			Label lblPage;
+			Button lblPage;
 			if(pageNo == i) {
 				//현재 페이지 표시방법
-				lblPage = new Label( "[" + i + "]");
+				lblPage = new Button( "[" + i + "]");
 			} else {
-				lblPage = new Label(i + "");	
+				lblPage = new Button(i + "");	
 			}
 			
 			//TODO 페이지 클릭 이벤트
 			//TODO 여기다 코딩
-			
+			lblPage.addActionListener(null)
 			
 			pnlDispPage.add(lblPage);
 		}
