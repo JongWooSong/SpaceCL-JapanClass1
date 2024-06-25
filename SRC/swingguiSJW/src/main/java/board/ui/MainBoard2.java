@@ -171,10 +171,16 @@ public class MainBoard2 extends JFrame {
 			lblPage.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if( e.getSource() instanceof SpaceCLButton) {
-						SpaceCLButton clBtn = (SpaceCLButton)e.getSource();
-						System.out.println("클릭한 페이지 번호: " + clBtn.curPage);
-						showTable( clBtn.curPage );	
+					if( e.getSource() instanceof SpaceCLButton ) {
+						SpaceCLButton btn = (SpaceCLButton)e.getSource();
+						String title = btn.getLabel();
+						System.out.println("클릭한 페이지 번호: " + title);
+						
+						if( title.startsWith("[") ) {
+							return;
+						}
+						int page = Integer.parseInt(title);
+						showTable( page );	
 					}
 				}
 			});
