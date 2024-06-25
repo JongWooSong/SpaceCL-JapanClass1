@@ -141,7 +141,6 @@ public class MainBoard2 extends JFrame {
 		lblPage10 = new JLabel("10");
 		panel_1.add(lblPage10);
 		
-		
 		btnNewButton = new JButton("다음");
 		panel_1.add(btnNewButton);
 		
@@ -151,13 +150,22 @@ public class MainBoard2 extends JFrame {
 		
 		//리스트를 읽어온다.
 		showTable(0);
+		
+		//검색 버튼 클릭 이벤트 등록
+		btnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//리스트를 읽어온다.
+				showTable(0);
+			}
+		});
 	
 	};//end 생성자
 
 	//리스트 출력
 	public void showTable(int pageNo) {
 		//DB조회
-		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo); 
+		List<BoardBean> boardList = mBoardCRUD.getBoardList(pageNo, txtSearch.getText()); 
 		
 		//TODO 출력 
 		String header[] = {"게시글 번호", "타이틀", "작성자", "조회수", "작성일" };
@@ -216,15 +224,5 @@ public class MainBoard2 extends JFrame {
 		pnlTable.add(scrollTable, BorderLayout.CENTER);
 		
 	}//end method
-	
-	public static void main(String[] args) {
-		//TODO for test
-		MemberBean mBean = new MemberBean();
-		MainBoard2 board = new MainBoard2(mBean);
-		board.setVisible(true);
-		board.showTable( 0 );
-	}
-	
-	
 	
 }

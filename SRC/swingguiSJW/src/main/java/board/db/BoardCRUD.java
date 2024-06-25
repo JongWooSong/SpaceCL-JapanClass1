@@ -9,9 +9,6 @@ import java.util.List;
 
 public class BoardCRUD extends CommonCRUD {
 
-	public static void main(String[] args) {
-		new BoardCRUD().getBoardList(0);
-	}
 	
 	//TODO board 테이블에 boardBean 값을 insert 데이터 하는
 	//코드를 작성 하시오. (= insertMember() 참고해라)
@@ -44,7 +41,7 @@ public class BoardCRUD extends CommonCRUD {
 	 * @param pageNo 0:(최신목록 10개만 가져온다), 숫자: 해당 페이지를 목록으로 취득
 	 * @return
 	 */
-	public List<BoardBean> getBoardList(int pageNo) {
+	public List<BoardBean> getBoardList(int pageNo, String searchWord) {
 		
 		Connection conn = getConnection();
 		List<BoardBean> list = new ArrayList<BoardBean>();
@@ -60,7 +57,8 @@ public class BoardCRUD extends CommonCRUD {
 				+" (select name from member where member_no = b.member_no) memberName, "
 				+" reg_dt "
 			+ " from board b "
-			+ " where title like %" + searchWord + "%"	
+			+ " where title like '%" + searchWord + "%'" 
+				+ " or contents like '%" + searchWord + "%'"	
 			+ " order by board_no desc "
 			+ " limit 10";
 			
