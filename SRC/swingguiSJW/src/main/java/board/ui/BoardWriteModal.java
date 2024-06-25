@@ -89,7 +89,7 @@ public class BoardWriteModal extends JDialog {
 							JOptionPane.showMessageDialog(null, "저장에 성공 하였습니다.");
 							BoardWriteModal.this.dispose();
 							//리스트 새롭게 조회
-							mainBoard2.showTable( 0 );
+							mainBoard2.showTable( mainBoard2.mCurPageNo );
 						} else {
 							JOptionPane.showMessageDialog(null, "저장에 실패 하였습니다.");
 						}

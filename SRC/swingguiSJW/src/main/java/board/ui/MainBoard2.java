@@ -53,6 +53,9 @@ public class MainBoard2 extends JFrame {
 	private BoardCRUD mBoardCRUD = new BoardCRUD();
 	private JPanel pnlDispPage;
 	
+	//현재 페이지 번호를 저장하고 변수
+	public int mCurPageNo = 1; 
+	
 	
 	/**
 	 * Create the frame.
@@ -128,14 +131,14 @@ public class MainBoard2 extends JFrame {
 		pnlTable.setLayout(new BorderLayout(0, 0));
 		
 		//리스트를 읽어온다.
-		showTable(0);
+		showTable(mCurPageNo);
 		
 		//검색 버튼 클릭 이벤트 등록
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//리스트를 읽어온다.
-				showTable(0);
+				showTable(mCurPageNo);
 			}
 		});
 	
@@ -151,10 +154,16 @@ public class MainBoard2 extends JFrame {
 		//추가
 		int listTotCnt = mBoardCRUD.getTotalListCnt();
 		//전체 페이지 갯수
-		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10 ) );
+		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10.0 ) );
 		//전체 페이지 갯수만큼 돌면서 라벨을 추가한다.
 		for(int i=1; i<=totPageCnt; i++) {
-			Label lblPage = new Label(i + "");
+			Label lblPage;
+			if(pageNo == i) {
+				//현재 페이지 표시방법
+				lblPage = new Label( "[" + i + "]");
+			} else {
+				lblPage = new Label(i + "");	
+			}
 			pnlDispPage.add(lblPage);
 		}
 		
