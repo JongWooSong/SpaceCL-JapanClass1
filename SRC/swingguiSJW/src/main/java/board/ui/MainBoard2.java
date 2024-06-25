@@ -1,9 +1,7 @@
 package board.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -159,23 +157,33 @@ public class MainBoard2 extends JFrame {
 		int totPageCnt =  (int)( Math.ceil( listTotCnt / 10.0 ) );
 		//전체 페이지 갯수만큼 돌면서 라벨을 추가한다.
 		for(int i=1; i<=totPageCnt; i++) {
-			Button lblPage;
+			SpaceCLButton lblPage;
 			if(pageNo == i) {
 				//현재 페이지 표시방법
-				lblPage = new Button( "[" + i + "]");
+				lblPage = new SpaceCLButton( "[" + i + "]");
+				lblPage.curPage = i;
 			} else {
-				lblPage = new Button(i + "");	
+				lblPage = new SpaceCLButton(i + "");	
 			}
 			
 			//TODO 페이지 클릭 이벤트
 			//TODO 여기다 코딩
-			lblPage.addActionListener(null);
+			lblPage.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if( e.getSource() instanceof SpaceCLButton) {
+						SpaceCLButton clBtn = (SpaceCLButton)e.getSource();
+						System.out.println("클릭한 페이지 번호: " + clBtn.curPage);
+						showTable( clBtn.curPage );	
+					}
+				}
+			});
 			
 			pnlDispPage.add(lblPage);
-		}
+		}//end for
 		
-		//왕중요!!!! 다시 패널에 페이지 버튼을 그려야함.
-		pnlDispPage.revalidate()
+		//TODO 왕중요!!!! 다시 패널에 페이지 버튼을 그려야함.
+		pnlDispPage.revalidate();
 		
 		
 		
