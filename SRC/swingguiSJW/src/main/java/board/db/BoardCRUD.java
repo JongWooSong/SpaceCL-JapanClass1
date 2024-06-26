@@ -121,8 +121,69 @@ public class BoardCRUD extends CommonCRUD {
 		}
 		
 		return list;
-	}
+	}//end method
 	
+	/**
+	 * 1건의 상세 게시물을 취득한다.
+	 * @param boardNo
+	 * @return
+	 */
+	public BoardBean getBoard(String boardNo) {
+		
+		Connection conn = getConnection();
+		BoardBean bean = new BoardBean();
+		
+		try {
+			//3.쿼리 수행을 위한 Statment 객체 생성
+			Statement stmt = conn.createStatement();
+			
+			//4.쿼리 작성
+			String sql = 
+			" select "
+				+" board_no, title, contents, count, secret_yn, member_no, "
+				+" (select name from member where member_no = b.member_no) memberName, "
+				+" reg_dt "
+			+ " from board b "
+			+ " where board_no = " + boardNo;
+			
+			//5.쿼리수행
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				//1건조회
+				bean.setBoardNo( rs.getString("board_no") );
+				bean.setTitle( rs.getString("title") );
+				bean.setContents( rs.getString("contents") );
+				bean.setCount( rs.getString("count") );
+				bean.setSecretYn( rs.getString("secret_yn") );
+				bean.setMemberNo( rs.getString("member_no") );
+				bean.setMemberName( rs.getString("memberName") );
+				bean.setRegDt( rs.getString("reg_dt") );
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bean;
+	}//end method
 	
+	/**
+	 * 1건 업데이트 
+	 * @param boardBean
+	 * @return 업데이트된 row 수
+	 */
+	public int updateBoard(BoardBean boardBean) {
+		
+	}//end method
+	
+	/**
+	 * 1건 삭제
+	 * @param boardNo
+	 * @return 삭제된 row 수
+	 */
+	public int delBoard(String boardNo) {
+		
+	}//end method
 	
 }

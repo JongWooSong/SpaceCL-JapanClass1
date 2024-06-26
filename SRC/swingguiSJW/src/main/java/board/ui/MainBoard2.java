@@ -255,9 +255,11 @@ public class MainBoard2 extends JFrame {
 					//TODO 더블클릭 이벤트 여기로 온다.
 					System.out.println("클릭한 row값: " + row);
 					
-					TableColumnModel model = table.getColumnModel();
+					//TableColumnModel model = table.getColumnModel();
+					//row 행의 0 번째열의 값을 가져온다.
+					String boardNo = (String)table.getValueAt(row, 0); 
 					
-					System.out.println("클릭한 테이블 고유번호: ???" );
+					System.out.println("클릭한 테이블 고유번호: ???" + boardNo );
 				}
 			}
 		});
