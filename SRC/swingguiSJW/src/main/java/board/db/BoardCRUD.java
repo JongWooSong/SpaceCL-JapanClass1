@@ -182,13 +182,13 @@ public class BoardCRUD extends CommonCRUD {
 			String sql = "UPDATE board set reg_dt = now() ";
 			
 			if( StringUtils.isNotEmpty(boardBean.getTitle()) ) {
-				sql += ", title = " + boardBean.getTitle();
+				sql += ", title = '" + boardBean.getTitle() + "'";
 			}
 			if( StringUtils.isNotEmpty(boardBean.getContents()) ) {
-				sql += ", contents = " + boardBean.getContents();
+				sql += ", contents = '" + boardBean.getContents() + "'";
 			}
 			if( StringUtils.isNotEmpty(boardBean.getCount()) ) {
-				sql += ", count = " + boardBean.getCount();
+				sql += ", count = '" + boardBean.getCount() + "'";
 			}
 			sql += " where board_no = ?";
 			
@@ -197,7 +197,8 @@ public class BoardCRUD extends CommonCRUD {
 			//4.데이터 binding
 			pstmt.setString(1, boardBean.getBoardNo() );
 			
-			
+			//5.쿼리실행 
+			cntRow = pstmt.executeUpdate();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -215,6 +216,31 @@ public class BoardCRUD extends CommonCRUD {
 	 */
 	public int delBoard(String boardNo) {
 
+		int cntRow = 0;
+		Connection conn = getConnection();
+		
+		//값이 안오면 바로 리턴
+		if( StringUtils.isEmpty(boardNo) ) {
+			return cntRow;
+		}
+		
+		try {
+			//3.쿼리준비
+			String sql = "DELETE FROM board WHERE board_no = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			//4.데이터 binding
+			pstmt.setString(1, boardNo );
+			
+			//5.쿼리실행 
+			cntRow = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cntRow;
+		
 	}// end method
 
 }
