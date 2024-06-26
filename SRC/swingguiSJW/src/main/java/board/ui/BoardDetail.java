@@ -105,21 +105,23 @@ public class BoardDetail extends JDialog {
 				btnDel.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						BoardBean boardBean = new BoardBean();
-						boardBean.setTitle( txtTitle.getText() );
-						boardBean.setContents( txtContent.getText()  );
-						boardBean.setMemberNo( mMemberBean.getMemberNo() );
 						
-						int cnt = mBoardCURD.insertBoard(boardBean);
-						if( cnt > 0 ) {
-							//저장완료
-							JOptionPane.showMessageDialog(null, "저장에 성공 하였습니다.");
-							BoardDetail.this.dispose();
-							//리스트 새롭게 조회
-							mainBoard2.showTable( mainBoard2.mCurPageNo );
-						} else {
-							JOptionPane.showMessageDialog(null, "저장에 실패 하였습니다.");
-						}
+						int res = JOptionPane.showConfirmDialog(null, 
+								"삭제 하시겠습니까?", "삭제", JOptionPane.YES_NO_OPTION);
+						if( res == JOptionPane.YES_OPTION ) 
+						{
+							//실행로직
+							int cnt = mBoardCURD.delBoard( mBoardBean.getBoardNo() );
+							if( cnt > 0 ) {
+								//삭제완료
+								JOptionPane.showMessageDialog(null, "삭제에 성공 하였습니다.");
+								BoardDetail.this.dispose();
+								//리스트 새롭게 조회
+								mainBoard2.showTable( mainBoard2.mCurPageNo );
+							} else {
+								JOptionPane.showMessageDialog(null, "삭제에 실패 하였습니다.");
+							}
+						}//end if
 					}
 				});
 				
