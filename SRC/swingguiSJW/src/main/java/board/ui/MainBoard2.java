@@ -258,9 +258,15 @@ public class MainBoard2 extends JFrame {
 					//TableColumnModel model = table.getColumnModel();
 					//row 행의 0 번째열의 값을 가져온다.
 					String boardNo = (String)table.getValueAt(row, 0); 
-					
 					System.out.println("클릭한 테이블 고유번호: ???" + boardNo );
-				}
+					
+					//DB조회
+					BoardBean boardBean = mBoardCRUD.getBoard(boardNo);
+					
+					//상세화면 생성
+					BoardDetail boardDetail = new BoardDetail(mMemBean, boardBean, MainBoard2.this);
+					boardDetail.setVisible(true);
+				}//end if
 			}
 		});
 		

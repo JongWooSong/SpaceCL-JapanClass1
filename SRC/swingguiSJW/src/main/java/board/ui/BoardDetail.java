@@ -108,11 +108,11 @@ public class BoardDetail extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		
+		//표시
+		txtTitle.setText( mBoardBean.getTitle() );
+		txtContent.setText( mBoardBean.getContents() );
+		
 	}; //end 생성자
 	
-	public void clearInputs() {
-		txtTitle.setText("");
-		txtContent.setText("");
-	}
-
 }
