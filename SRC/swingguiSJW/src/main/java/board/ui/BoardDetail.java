@@ -80,6 +80,28 @@ public class BoardDetail extends JDialog {
 				buttonPane.add(btnDel);
 				getRootPane().setDefaultButton(btnDel);
 				
+				//수정버튼 클릭
+				btnUpdate.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						BoardBean boardBean = new BoardBean();
+						boardBean.setTitle( txtTitle.getText() );
+						boardBean.setContents( txtContent.getText()  );
+						boardBean.setMemberNo( mMemberBean.getMemberNo() );
+						boardBean.setBoardNo( mBoardBean.getBoardNo() );
+						
+						int cnt = mBoardCURD.updateBoard(boardBean);
+						if( cnt > 0 ) {
+							//수정성공
+							JOptionPane.showMessageDialog(null, "수정에 성공 하였습니다.");
+							BoardDetail.this.dispose();
+							//리스트 새롭게 조회
+							mainBoard2.showTable( mainBoard2.mCurPageNo );
+						}
+					}
+				});
+				
+				//삭제버튼 클릭
 				btnDel.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {

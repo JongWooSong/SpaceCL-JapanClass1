@@ -187,9 +187,7 @@ public class BoardCRUD extends CommonCRUD {
 			if( StringUtils.isNotEmpty(boardBean.getContents()) ) {
 				sql += ", contents = '" + boardBean.getContents() + "'";
 			}
-			if( StringUtils.isNotEmpty(boardBean.getCount()) ) {
-				sql += ", count = '" + boardBean.getCount() + "'";
-			}
+			sql += ", count = count + 1";
 			sql += " where board_no = ?";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
