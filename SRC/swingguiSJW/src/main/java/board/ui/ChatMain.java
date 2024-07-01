@@ -73,7 +73,9 @@ public class ChatMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			
+			new SenderChat(mSocket, txtMsg.getText()).start();
+			txtMsg.setText(""); //메시지 전송후 메시지란 초기화
+			txtMsg.requestFocus();
 			
 		}
 	};
@@ -84,6 +86,14 @@ public class ChatMain extends JFrame {
 			mSocket = new Socket(SERVER_IP, SERVER_PORT);
 			jtaChatMsgs.append("서버와의 연결이 되었습니다.\n");
 			jtaChatMsgs.append("대화명은 " + mMemBean.getName() + " 입니다.\n");
+			
+			//수신 채팅 쓰레드 생성 및 시작
+			ClientReceiver clientReceiver = new ClientReceiver(mSocket);
+			clientReceiver.start();
+			
+			//추가: 닉네임을 처음에 서버로 날려준다.
+			DataOutputStream output = new DataOutputStream(mSocket.getOutputStream());
+			output.writeUTF( mMemBean.getName() );
 			
 		} catch(Exception e) {
 			e.printStackTrace();
