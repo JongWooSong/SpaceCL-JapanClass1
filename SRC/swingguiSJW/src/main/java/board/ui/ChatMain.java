@@ -23,6 +23,7 @@ public class ChatMain extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtMsg;
 	private JTextArea jtaChatMsgs;
+	private JScrollPane scrollPane;
 	private MemberBean mMemBean;
 	//채팅관련 상수 추가 
 	private final String SERVER_IP = "192.168.0.49";
@@ -47,7 +48,7 @@ public class ChatMain extends JFrame {
 		jtaChatMsgs = new JTextArea();
 		jtaChatMsgs.setEditable(false);
 		
-		JScrollPane scrollPane = new JScrollPane(jtaChatMsgs);
+		scrollPane = new JScrollPane(jtaChatMsgs);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -123,7 +124,12 @@ public class ChatMain extends JFrame {
 			while( input != null ) {
 				try {
 					//메시지를 출력한다.
-					jtaChatMsgs.append( input.readUTF() );
+					jtaChatMsgs.append( input.readUTF() + "\n" );
+					//JScrollPane의 바를 최 하단으로 맞춤
+					scrollPane.getVerticalScrollBar().setValue(
+							scrollPane.getVerticalScrollBar().getMaximum()
+						);
+					
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
