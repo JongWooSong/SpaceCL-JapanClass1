@@ -59,6 +59,7 @@ public class MainBoard2 extends JFrame {
 	public int mCurPageNo = 1; 
 	//전체페이지 수
 	public int mTotPageCnt;
+	private JButton btnChat;
 	
 	
 	/**
@@ -77,6 +78,17 @@ public class MainBoard2 extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
+		
+		btnChat = new JButton("채팅하기");
+		panel.add(btnChat);
+		btnChat.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//채팅창을 띄운다.
+				ChatMain chatMain = new ChatMain(mMemBean);
+				chatMain.setVisible(true);
+			}
+		});
 		
 		txtSearch = new JTextField();
 		panel.add(txtSearch);
