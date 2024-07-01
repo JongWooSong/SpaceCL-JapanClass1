@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.Socket;
 
 import javax.swing.JButton;
@@ -120,6 +121,32 @@ public class ChatMain extends JFrame {
 		}//end run()
 		
 	};//end class
+	
+	
+	/**
+	 * 채팅시의 채팅 내용을 서버로 전송하는 쓰레드 클래스
+	 */
+	class SenderChat extends Thread {
+		Socket socket;
+		String msg;
+		
+		public SenderChat(Socket socket, String msg) {
+			this.socket = socket;
+			this.msg = msg;
+		}
+		
+		@Override
+		public void run() {
+			//서버로 메시지를 전송하는 부분
+			try {
+				DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+				output.writeUTF( "[" + mMemBean.getName() + "]=> " + this.msg );
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	};
 	
 	
 }
