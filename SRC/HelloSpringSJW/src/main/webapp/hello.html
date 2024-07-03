@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<!-- 주석: 제이쿼리를 온라인상의 주소로 사용하겠다고 선언한다. -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+		 integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+		  crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			
+			$.get("/firstHello", 
+				function (data, status) {
+					//위의 URL 을 호출하고 나서 반환되는 데이터를 처리하는 곳
+					console.log("status:" + status);
+					console.log(data);
+				}
+			);
+			
+		});
+		
+	</script>
+	
+</head>
+<body>
+	
+	
+	
+	
+</body>
+</html>
