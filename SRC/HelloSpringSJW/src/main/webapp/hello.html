@@ -20,34 +20,37 @@
 			
 			//버튼 이벤트 설정
 			$("#btnSend").on("click", function() {
-				alert("버튼 클릭");
-			});
+				
+				//name 취득해야한다.
+				var stuName =  $("#stuName").val();
+				console.log ( stuName );//입력한 값을 가져온다.
 
+				$.get("/firstHello?name=" + stuName, 
+					function (data, status) {
+						//위의 URL 을 호출하고 나서 반환되는 데이터를 처리하는 곳
+						console.log("status:" + status);
+						console.log(data);
 
-			$.get("/firstHello", 
-				function (data, status) {
-					//위의 URL 을 호출하고 나서 반환되는 데이터를 처리하는 곳
-					console.log("status:" + status);
-					console.log(data);
+						$("#name").text( data.memberBean.name );
+						$("#age").text( data.memberBean.age );
+						$("#addr").text( data.memberBean.address.city 
+							+ ' ' + data.memberBean.address.street );
+						$("#student").text( 
+							data.memberBean.student == true ? '학생이다.': '학생아니다' 
+						);
+						var langs = data.memberBean.languages;
+						var langStr = "";
+						for(var i=0; i<langs.length; i++) {
+							langStr += langs[i] + ", ";
+						}
+						$("#langs").text( langStr );
 
-					$("#name").text( data.memberBean.name );
-					$("#age").text( data.memberBean.age );
-					$("#addr").text( data.memberBean.address.city 
-						+ ' ' + data.memberBean.address.street );
-					$("#student").text( 
-						data.memberBean.student == true ? '학생이다.': '학생아니다' 
-					);
-					var langs = data.memberBean.languages;
-					var langStr = "";
-					for(var i=0; i<langs.length; i++) {
-						langStr += langs[i] + ", ";
-					}
-					$("#langs").text( langStr );
+					}//end function
+				);//end get
 
-				}
-			);
+			});//end 버튼 이벤트
 			
-		});
+		});//end ready
 		
 	</script>
 	
