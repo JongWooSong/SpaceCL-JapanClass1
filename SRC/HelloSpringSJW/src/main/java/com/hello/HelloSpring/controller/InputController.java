@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +19,7 @@ public class InputController {
 				produces = MediaType.APPLICATION_JSON_VALUE
 			)
 	@ResponseBody //json 으로 반환하겠다.
-	public Map<String, Object> insertStudent(MemberBean bean) {
+	public Map<String, Object> insertStudent(@RequestBody MemberBean bean) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
