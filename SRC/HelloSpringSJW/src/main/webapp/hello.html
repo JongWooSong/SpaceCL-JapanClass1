@@ -18,6 +18,12 @@
 	
 		$(document).ready(function() {
 			
+			//버튼 이벤트 설정
+			$("#btnSend").on("click", function() {
+				alert("버튼 클릭");
+			});
+
+
 			$.get("/firstHello", 
 				function (data, status) {
 					//위의 URL 을 호출하고 나서 반환되는 데이터를 처리하는 곳
@@ -56,9 +62,12 @@
 
 </head>
 <body>
-	<h1>학생 기록부</h1> <br/>
-	<button type="button" id="btnSucc" class="btn btn-success rounded-pill px-3">
-		Success</button>
+	<h1>학생 기록부</h1>
+
+	<input type="text" id="stuName" 
+		class="form-control" placeholder="이름을 입력하시오">
+	<button type="button" id="btnSend" class="btn btn-success rounded-pill px-3">
+		전송</button>
 	<br/>
 
 	이름:<span id="name"></span> <br/>

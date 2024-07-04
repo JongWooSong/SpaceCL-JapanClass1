@@ -20,12 +20,16 @@ public class TestController {
 
 	@RequestMapping(value = "/firstHello", method = {RequestMethod.GET, RequestMethod.POST} )
 	@ResponseBody
-	public Map<String, Object> firstHello() throws Exception {
+	public Map<String, Object> firstHello2(String name) throws Exception {
+		
+		System.out.println("name = " + name);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		MemberBean memberBean = new MemberBean();
-		memberBean.setName("Jhon");
+		if(name != null) {
+			memberBean.setName(name);
+		}
 		memberBean.setAge(20);
 		memberBean.setStudent(true);
 		
