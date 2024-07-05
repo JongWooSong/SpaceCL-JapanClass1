@@ -12,7 +12,6 @@
 			,id
 			,pw
 			,name
-			,email
 			,addr
 			,birthdate
 			,hp
@@ -23,5 +22,25 @@
 		where
 			id = #{id} 
 	</select>
+	
+	
+	<!-- 여러건 조회 -->
+	<select id="selectMemberList" parameterType="com.hello.hellospring.common.bean.MemberBean">
+		select 
+			member_no as memberNo
+			,id
+			,pw
+			,name
+			,addr
+			,birthdate
+			,hp
+			,reg_dt as regDt
+			,last_login_dt as lastLoginDt
+		from
+			member
+	</select>
+	
+	
+	
 	
 </mapper>
