@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.HelloSpring.common.bean.AddressBean;
-import com.hello.HelloSpring.common.bean.MemberBean;
+import com.hello.HelloSpring.common.bean.MemberTestBean;
 
 @Controller
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -26,7 +26,7 @@ public class TestController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		MemberBean memberBean = new MemberBean();
+		MemberTestBean memberBean = new MemberTestBean();
 		if(name != null) {
 			memberBean.setName(name);
 		}
