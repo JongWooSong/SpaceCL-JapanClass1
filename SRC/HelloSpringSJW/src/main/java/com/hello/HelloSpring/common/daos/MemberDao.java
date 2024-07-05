@@ -1,5 +1,5 @@
 package com.hello.HelloSpring.common.daos;
 
-public class MemberDao {
+public interface MemberDao {
 
 }
