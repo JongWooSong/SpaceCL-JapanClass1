@@ -4,6 +4,23 @@
 	
 <mapper namespace="com.hello.HelloSpring.common.daos.MemberDao">
 	
-	
+	<!-- 1건 조회 -->
+	<select id="selectMember" parameterType="com.hello.HelloSpring.common.bean.MemberBean">
+		select 
+			member_no as memberNo
+			,id
+			,pw
+			,name
+			,email
+			,addr
+			,birthdate
+			,hp
+			,reg_dt as regDt
+			,last_login_dt as lastLoginDt
+		from
+			member
+		where
+			id = #{id} 
+	</select>
 	
 </mapper>

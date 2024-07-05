@@ -1,15 +1,26 @@
 package com.hello.HelloSpring.common.bean;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
 public class MemberBean {
-	
+
+	private String memberNo;
+	private String id;
+	private String pw;
 	private String name;
-	private int age;
-	private boolean isStudent;
-	private AddressBean address;
-	private List<String> languages;
+	private String email;
+	private String addr;
+	private String birthdate;
+	private String hp;
+	private String regDt;
+	private String lastLoginDt;
+	
+	public void printAll() {
+		System.out.println( 
+			memberNo + ", " + id + ", " + pw + ", " + name + ", " + email + ", " 
+			+ addr + ", " + birthdate + ", " + hp + ", " + regDt + ", " + lastLoginDt 
+		);
+	}
+
 }
