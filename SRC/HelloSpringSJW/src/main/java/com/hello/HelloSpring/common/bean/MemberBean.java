@@ -1,4 +1,4 @@
-package com.hello.HelloSpring.bean;
+package com.hello.HelloSpring.common.bean;
 
 import java.util.List;
 

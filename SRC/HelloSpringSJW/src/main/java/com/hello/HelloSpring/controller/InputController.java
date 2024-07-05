@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.HelloSpring.bean.MemberBean;
+import com.hello.HelloSpring.common.bean.MemberBean;
 
 @Controller
 public class InputController {

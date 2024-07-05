@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.HelloSpring.bean.AddressBean;
-import com.hello.HelloSpring.bean.MemberBean;
+import com.hello.HelloSpring.common.bean.AddressBean;
+import com.hello.HelloSpring.common.bean.MemberBean;
 
 @Controller
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
