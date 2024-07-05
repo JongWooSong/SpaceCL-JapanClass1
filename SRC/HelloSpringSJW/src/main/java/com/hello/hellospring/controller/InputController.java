@@ -1,4 +1,4 @@
-package com.hello.HelloSpring.controller;
+package com.hello.hellospring.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.HelloSpring.common.bean.MemberTestBean;
+import com.hello.hellospring.common.bean.MemberTestBean;
 
 @Controller
 public class InputController {

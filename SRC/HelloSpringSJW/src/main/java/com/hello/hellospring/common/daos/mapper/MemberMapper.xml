@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.hello.HelloSpring.common.daos.MemberDao">
+<mapper namespace="com.hello.hellospring.common.daos.MemberDao">
 	
 	<!-- 1건 조회 -->
-	<select id="selectMember" parameterType="com.hello.HelloSpring.common.bean.MemberBean">
+	<select id="selectMember" parameterType="com.hello.hellospring.common.bean.MemberBean">
 		select 
 			member_no as memberNo
 			,id
