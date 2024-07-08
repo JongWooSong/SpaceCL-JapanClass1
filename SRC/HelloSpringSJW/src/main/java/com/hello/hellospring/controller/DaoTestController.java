@@ -76,15 +76,50 @@ public class DaoTestController {
 	}
 	
 	
+	@RequestMapping(value = "/updateMember", method = {RequestMethod.POST} )
+	@ResponseBody
+	public Map<String, Object> updateMember(@RequestBody MemberBean bean) throws Exception 
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		String result = Constants.RESULT_VAL_FAIL;
+		String resultMsg = "회원정보 수정에 실패 하였습니다.";
+		
+		//TODO
+		int res = memberDao.updateMember(bean);
+		if( res > 0 ) {
+			//성공
+			result = Constants.RESULT_VAL_OK;
+			resultMsg = "회원정보 수정에 성공 하였습니다.";
+		}
+		
+		map.put(Constants.RESULT_KEY, result);
+		map.put(Constants.RESULT_KEY_MSG, resultMsg);
+		return map;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/deleteMember", method = {RequestMethod.POST} )
+	@ResponseBody
+	public Map<String, Object> deleteMember(@RequestBody MemberBean bean) throws Exception 
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		String result = Constants.RESULT_VAL_FAIL;
+		String resultMsg = "회원정보 삭제에 실패 하였습니다.";
+		
+		try {
+			int res = memberDao.deleteMember(bean);
+			if( res > 0 ) {
+				//성공
+				result = Constants.RESULT_VAL_OK;
+				resultMsg = "회원정보 삭제에 성공 하였습니다.";
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			resultMsg = "서버쪽 에러가 발행 했습니다. 관리자에게 문의 하세요";
+		}
+		
+		map.put(Constants.RESULT_KEY, result);
+		map.put(Constants.RESULT_KEY_MSG, resultMsg);
+		return map;
+	}
 	
 }
