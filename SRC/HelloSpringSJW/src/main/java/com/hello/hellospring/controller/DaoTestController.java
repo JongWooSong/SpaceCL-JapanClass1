@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.hellospring.common.Constants;
 import com.hello.hellospring.common.bean.MemberBean;
 import com.hello.hellospring.common.daos.MemberDao;
 
@@ -55,9 +56,21 @@ public class DaoTestController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		//validation 체크
+		if(bean.getBirthdate() != null && bean.getBirthdate().length() > 8) {
+			map.put(Constants.RESULT_KEY, Constants.RESULT_VAL_FAIL);
+			map.put(Constants.RESULT_KEY_MSG, "생년월일이 8글자를 초과할 수 없습니다.");
+			return map;
+		}
+		
 		int res = memberDao.insertMember(bean);
-		if()
-		map.put("memberList", memberList);
+		if(res > 0) {
+			map.put(Constants.RESULT_KEY, Constants.RESULT_VAL_OK);
+			map.put(Constants.RESULT_KEY_MSG, "회원등록에 성공 하였습니다.");
+		} else {
+			map.put(Constants.RESULT_KEY, Constants.RESULT_VAL_FAIL);
+			map.put(Constants.RESULT_KEY_MSG, "회원등록에 실패 하였습니다.");
+		}
 		
 		return map;
 	}

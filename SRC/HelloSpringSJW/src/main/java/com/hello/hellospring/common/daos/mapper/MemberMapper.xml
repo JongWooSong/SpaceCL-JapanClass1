@@ -43,7 +43,7 @@
 	<!-- 삽입 -->
 	<insert id="insertMember" parameterType="com.hello.hellospring.common.bean.MemberBean">
 		insert into member 
-			(id, pw, name, email, addr, birthday, hp)
+			(id, pw, name, email, addr, birthdate, hp)
 			values
 			(
 				#{id}
