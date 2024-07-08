@@ -40,7 +40,52 @@
 			member
 	</select>
 	
+	<!-- 삽입 -->
+	<insert id="insertMember" parameterType="com.hello.hellospring.common.bean.MemberBean">
+		insert into member 
+			(id, pw, name, email, addr, birthday, hp)
+			values
+			(
+				#{id}
+				,#{pw}
+				,#{name}
+				,#{email}
+				,#{addr}
+				,#{birthdate}
+				,#{hp}
+			)
+	</insert>
 	
+	<!-- 수정 -->
+	<update id="updateMember" parameterType="com.hello.hellospring.common.bean.MemberBean">
+		update member set
+			reg_dt = now()
+			<if test="name != null and name != ''">
+				,name = #{name}
+			</if>
+			<if test="email != null and email != ''">
+				,email = #{email}
+			</if>
+			<if test="addr != null and addr != ''">
+				,addr = #{addr}
+			</if>
+			<if test="birthdate != null and birthdate != ''">
+				,birthdate = #{birthdate}
+			</if>
+			<if test="hp != null and hp != ''">
+				,hp = #{hp}
+			</if>
+		where
+			id = #{id}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteMember" parameterType="com.hello.hellospring.common.bean.MemberBean">
+		delete from 
+			member
+		where 
+			id = #{id}
+	</delete>
 	
 	
 </mapper>

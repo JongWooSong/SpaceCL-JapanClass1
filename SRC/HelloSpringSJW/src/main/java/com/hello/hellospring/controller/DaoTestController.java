@@ -1,10 +1,12 @@
 package com.hello.hellospring.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,5 +35,43 @@ public class DaoTestController {
 		
 		return map;
 	}
+	
+	
+	@RequestMapping(value = "/selectMemberList", method = {RequestMethod.GET} )
+	@ResponseBody
+	public Map<String, Object> selectMemberList(MemberBean bean) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<MemberBean> memberList = memberDao.selectMemberList(bean);
+		map.put("memberList", memberList);
+		
+		return map;
+	}
+	
+	@RequestMapping(value = "/insertMember", method = {RequestMethod.POST} )
+	@ResponseBody
+	public Map<String, Object> insertMember(@RequestBody MemberBean bean) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int res = memberDao.insertMember(bean);
+		if()
+		map.put("memberList", memberList);
+		
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
