@@ -46,4 +46,19 @@ public class MemberController {
 		return map;
 	}
 	
+	
+	//토큰 발행
+	@RequestMapping(value = "/getLoginToken", method = {RequestMethod.POST} )
+	@ResponseBody
+	public Map<String, Object> getLoginToken(@RequestBody MemberBean bean) throws Exception 
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		String result = Constants.RESULT_VAL_FAIL;
+		String resultMsg = "회원정보 Token 발행에 실패 하였습니다.";
+		
+		
+		return map;
+	}
+	
+	
 }
