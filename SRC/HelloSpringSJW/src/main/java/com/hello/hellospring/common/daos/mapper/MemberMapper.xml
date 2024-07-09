@@ -84,7 +84,7 @@
 		delete from 
 			member
 		where 
-			id = #{id}
+			member_no = #{memberNo}
 	</delete>
 	
 	
