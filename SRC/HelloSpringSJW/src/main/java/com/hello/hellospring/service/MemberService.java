@@ -1,5 +1,7 @@
 package com.hello.hellospring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,27 @@ public class MemberService {
 			throw new Exception("멤버 테이블의 멤버가 삭제되지 않았습니다.");	
 		}
 		
+	};
+	
+	
+	public int insertMember(MemberBean bean) {
+		return memberDao.insertMember(bean);
 	}
+	
+	
+	public int updateMember(MemberBean bean) {
+		return memberDao.updateMember(bean);
+	}
+	
+	public MemberBean selectMember(MemberBean bean) {
+		return memberDao.selectMember(bean);
+	}
+	
+	public List<MemberBean> selectMemberList(MemberBean bean) {
+		return memberDao.selectMemberList(bean);
+	}
+	
+	
+	
 	
 }
