@@ -15,7 +15,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		
 		registry.addInterceptor(new TokenCheckInterceptor())
-			.addPathPatterns("/**"); //모든 url 에 인터셉터를 걸겠다.
+			.addPathPatterns("/**") //모든 url 에 인터셉터를 걸겠다.
+			.excludePathPatterns("/getLoginToken");
 		
 	}
 	
