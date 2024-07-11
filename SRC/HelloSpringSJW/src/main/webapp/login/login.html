@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 화면</title>
+    
+    <!-- 주석: 제이쿼리를 온라인상의 주소로 사용하겠다고 선언한다. -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+     crossorigin="anonymous"></script>
+
+    <script>
+        function goLogin() {
+            //alert("로그인 버튼 눌렀지?");
+            var memId = $("#memId").val();
+            var memPw = $("#memPw").val();
+            //alert("id:" + memId + ", pw:" + memPw);
+            
+            var sendJson = {
+                "id": memId
+                ,"pw": memPw
+            };
+
+            // name이랑 time 포함해서 보내는 형식
+            $.ajax({
+                type: 'POST',
+                url: "/getLoginToken",
+                data: JSON.stringify(sendJson),
+                dataType: "json",
+                contentType:"application/json",
+                success: function(data) {
+                    console.log(data);
+                    alert( data.resultMsg );
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <h1>로그인</h1>
+	ID: <input type="text" id="memId" /> <br/>
+    PW: <input type="password" id="memPw" /> <br/>
+    <input type="button" value="로그인" onclick="goLogin()" />
+
+</body>
+</html>
