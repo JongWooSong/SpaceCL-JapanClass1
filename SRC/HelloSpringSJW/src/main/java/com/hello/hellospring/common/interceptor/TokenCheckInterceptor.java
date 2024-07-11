@@ -7,6 +7,7 @@ import com.hello.hellospring.common.Constants;
 import com.hello.hellospring.common.utils.JwtTokenHelper;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -34,6 +35,7 @@ public class TokenCheckInterceptor implements HandlerInterceptor {
 		if(authToken != null) {
 			authToken = authToken.replace("Bearer ", "");
 			try {
+				
 				Claims claims = JwtTokenHelper.parseClaims(authToken).getBody();
 				String id = claims.getId();
 				String issuer = claims.getIssuer();
@@ -41,12 +43,30 @@ public class TokenCheckInterceptor implements HandlerInterceptor {
 				System.out.println("id:" + id + ", isuuer:" + issuer + ", subejct:" + subject);
 				result = Constants.RESULT_VAL_OK;
 				resultMsg = "회원정보 Token 검증에 성공 하였습니다.";
-			}catch(Exception e) {
+				
+				return true; //인터셉터 영역을 통과
+				
+			} catch(ExpiredJwtException expException) {
+				expException.printStackTrace();
+				resultMsg = "Token 의 유효기간이 만료 되었습니다. 다시 발급 받으세요";
+			} catch(Exception e) {
 				e.printStackTrace();
+				resultMsg = e.getMessage();
 			}
 		}
 		
-		
+		//실패한 이유에 대해서 response 를 준다.
+		StringBuilder jsonMsg = new StringBuilder();
+		jsonMsg.append("{");
+		jsonMsg.append("\"result\"");
+		jsonMsg.append(":");
+		jsonMsg.append("\"");
+		jsonMsg.append(Constants.RESULT_VAL_FAIL);
+		jsonMsg.append("\"");
+			   "result": "fail"
+			  ,"resultMsg": "asdflkasdflj"
+			}
+		;
 		
 		return false;
 	}
