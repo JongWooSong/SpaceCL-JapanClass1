@@ -1,5 +1,7 @@
 package com.hello.hellospring.common.interceptor;
 
+import java.io.PrintWriter;
+
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,6 +57,12 @@ public class TokenCheckInterceptor implements HandlerInterceptor {
 			}
 		}
 		
+		/**
+		 * {
+			  "result": "fail"
+			  ,"resultMsg": "asdflkasdflj"
+			}
+		 */
 		//실패한 이유에 대해서 response 를 준다.
 		StringBuilder jsonMsg = new StringBuilder();
 		jsonMsg.append("{");
@@ -63,10 +71,18 @@ public class TokenCheckInterceptor implements HandlerInterceptor {
 		jsonMsg.append("\"");
 		jsonMsg.append(Constants.RESULT_VAL_FAIL);
 		jsonMsg.append("\"");
-			   "result": "fail"
-			  ,"resultMsg": "asdflkasdflj"
-			}
-		;
+		jsonMsg.append(",");
+		jsonMsg.append("\"resultMsg\"");
+		jsonMsg.append(":");
+		jsonMsg.append("\"");
+		jsonMsg.append(resultMsg);
+		jsonMsg.append("\"");
+		jsonMsg.append("}");
+		
+		PrintWriter writer = response.getWriter();
+		writer.write( jsonMsg.toString() );
+		writer.flush();
+		writer.close();
 		
 		return false;
 	}
