@@ -32,15 +32,18 @@
                 dataType: "json",
                 contentType:"application/json",
                 success: function(data) {
-                    console.log(data);
-                    //쿠키저장
-                    // setCookie(변수이름, 변수값, 기간(1=1일));  
-                    setCookie("authToken", data.token, 1);
-                    
-                    alert( data.resultMsg );
-                    
-                    //화면이동
-                    location.href = "/board/boardList.html";
+                	
+                	console.log(data);
+                	alert( data.resultMsg );
+                	
+                	if(data.result == "ok") {
+                		//쿠키저장
+                        // setCookie(변수이름, 변수값, 기간(1=1일));  
+                        setCookie("authToken", data.token, 1);
+                        //화면이동
+                        location.href = "/board/boardList.html";
+                	}
+                	
                 }
             });
 

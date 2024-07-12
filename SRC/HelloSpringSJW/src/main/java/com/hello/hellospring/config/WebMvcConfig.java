@@ -19,7 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/getLoginToken")
 			.excludePathPatterns("/login/**")
 			.excludePathPatterns("/board/*Form*")
-			.excludePathPatterns("/board/boardList.html");
+			.excludePathPatterns("/board/boardList.html")
+			.excludePathPatterns("/js/**");
 		
 	}
 	
