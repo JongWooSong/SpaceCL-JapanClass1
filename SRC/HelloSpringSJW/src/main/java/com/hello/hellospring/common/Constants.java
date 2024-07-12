@@ -8,6 +8,9 @@ public class Constants {
 	public static final String RESULT_KEY_MSG = "resultMsg";
 	public static final String RESULT_KEY_DATA = "data";
 	
+	//세션에 정보를 담을 키값
+	public static final String KEY_SESSION_MEMBER_BEAN = "keySessionMemberBean";
+	
 	//RESULT 상수의 값을 의미
 	public static final String RESULT_VAL_OK = "ok";
 	public static final String RESULT_VAL_FAIL = "fail";
