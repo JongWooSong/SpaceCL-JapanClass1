@@ -8,7 +8,10 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
      crossorigin="anonymous"></script>
-
+	
+	<!-- 쿠키처리 JS -->
+	<script type="text/javascript" src="../js/cookie.js"></script>
+	
     <script>
         function goLogin() {
             //alert("로그인 버튼 눌렀지?");
@@ -31,6 +34,9 @@
                 success: function(data) {
                     console.log(data);
                     alert( data.resultMsg );
+                    
+                    //화면이동
+                    location.href = "/board/boardList.html";
                 }
             });
 
