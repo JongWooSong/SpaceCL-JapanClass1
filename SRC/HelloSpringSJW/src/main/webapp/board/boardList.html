@@ -3,12 +3,50 @@
 <head>
 	<meta charset="UTF-8">
 	<title>게시판 리스트</title>
+	
+	<!-- 주석: 제이쿼리를 온라인상의 주소로 사용하겠다고 선언한다. -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+     crossorigin="anonymous"></script>
+	
+	<!-- 쿠키처리 JS -->
+	<script type="text/javascript" src="../js/cookie.js"></script>
+	
+	<script type="text/javascript">
+	
+		//<body> 태그가 브라우저에서 전체 로딩이 끝나면 호출된다.
+		$(function(){
+			
+			// name이랑 time 포함해서 보내는 형식
+            $.ajax({
+                type: 'GET',
+                url: "/selectBoardList?page=1&search=",
+                headers : {
+                    "Content-Type" : "application/x-www-form-urlencoded; charset=utf-8",
+                    "X-HTTP-Method-Override" : "POST",
+                    Authorization : getCookie("authToken")
+                },
+                success: function(data) {
+                	
+                	console.log(data);
+                	
+                	if(data.result == "ok") {
+                	
+                	}
+                	
+                }
+            });
+			
+		});
+		
+	</script>
+	
 </head>
 <body>
 
 	<h1>게시판 리스트</h1>
 	
-	<table border="1">
+	<table id="boartTable" border="1">
 		<thead>
 			<td>글번호</td>
 			<td>제목</td>
