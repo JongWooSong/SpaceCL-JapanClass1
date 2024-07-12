@@ -72,6 +72,8 @@ public class BoardController {
 		
 		try {
 			list = boardSerivce.selecetBoardList(bean);
+			result = Constants.RESULT_VAL_OK;
+			resultMsg = "게시글 목록 조회에 성공 하였습니다.";
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
