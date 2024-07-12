@@ -13,6 +13,16 @@
 	<script type="text/javascript" src="../js/cookie.js"></script>
 	
 	<script type="text/javascript">
+		function goPage(pageNo) {
+			const urlParams = new URL(location.href).searchParams;
+			const search = urlParams.get('search');
+			var url = "/board/boardList.html?page=" + pageNo;
+			if(search != null) {
+				url += "&search=" + search;
+			}
+			
+			location.href = url;
+		};
 	
 		//<body> 태그가 브라우저에서 전체 로딩이 끝나면 호출된다.
 		$(function(){
@@ -72,6 +82,17 @@
                 			$("#boartTable > thead").append(add);
                 		};//end for
                 		
+                		
+                		//페이징 테이블에 대한 for문을 돈다.
+                		$("#pagingTable").append("<tr>");
+                		for(var i=1; i<=data.totalPage; i++) {
+							add = "<td>";
+                			add += "<span style='cursor: pointer;'  onclick='goPage(" + i + ")'>" + i + "</span>";
+                			add += "</td>";
+                			$("#pagingTable").append(add);
+                		}
+                		$("#pagingTable").append("</tr>");
+                		
                 	}//end if
                 	
                 }
@@ -100,18 +121,6 @@
 	<br/>
 	
 	<table id="pagingTable" border="1">
-		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td>6</td>
-			<td>7</td>
-			<td>8</td>
-			<td>9</td>
-			<td>10</td>
-		</tr>		
 	</table>
 	
 </body>
