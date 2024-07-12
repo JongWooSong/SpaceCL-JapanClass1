@@ -31,7 +31,31 @@
                 	console.log(data);
                 	
                 	if(data.result == "ok") {
-                	
+                		//for 문 돌면서 테이블에 그린다.
+                		var add = "<tr>";
+	                		//글번호
+	                		add += "<td>";
+	                		add += "글번호";
+	                		add += "</td>";
+	                		//제목
+	                		add += "<td>";
+	                		add += "제목";
+	                		add += "</td>";
+	                		//글쓴이
+	                		add += "<td>";
+	                		add += "글쓴이";
+	                		add += "</td>";
+	                		//조회수
+	                		add += "<td>";
+	                		add += "조회수";
+	                		add += "</td>";
+	                		//날짜
+	                		add += "<td>";
+	                		add += "날짜";
+	                		add += "</td>";
+                		add += "</tr>";
+                		
+                		$("#boartTable > thead").append(add);
                 	}
                 	
                 }
@@ -54,13 +78,7 @@
 			<td>조회수</td>
 			<td>날짜</td>
 		</thead>
-		<tr>
-			<td>글번호</td>
-			<td>제목</td>
-			<td>글쓴이</td>
-			<td>조회수</td>
-			<td>날짜</td>
-		</tr>
+		
 	</table>
 	
 </body>
