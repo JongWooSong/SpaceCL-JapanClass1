@@ -32,31 +32,36 @@
                 	
                 	if(data.result == "ok") {
                 		//for 문 돌면서 테이블에 그린다.
-                		var add = "<tr>";
-	                		//글번호
-	                		add += "<td>";
-	                		add += "글번호";
-	                		add += "</td>";
-	                		//제목
-	                		add += "<td>";
-	                		add += "제목";
-	                		add += "</td>";
-	                		//글쓴이
-	                		add += "<td>";
-	                		add += "글쓴이";
-	                		add += "</td>";
-	                		//조회수
-	                		add += "<td>";
-	                		add += "조회수";
-	                		add += "</td>";
-	                		//날짜
-	                		add += "<td>";
-	                		add += "날짜";
-	                		add += "</td>";
-                		add += "</tr>";
+                		for(var i=0; i<data.data.length; i++) {
+							var iData = data.data[i];
+							
+                			var add = "<tr>";
+		                		//글번호
+		                		add += "<td>";
+		                		add += iData.boardNo;
+		                		add += "</td>";
+		                		//제목
+		                		add += "<td>";
+		                		add += iData.title;
+		                		add += "</td>";
+		                		//글쓴이
+		                		add += "<td>";
+		                		add += iData.memberName;
+		                		add += "</td>";
+		                		//조회수
+		                		add += "<td>";
+		                		add += iData.count;
+		                		add += "</td>";
+		                		//날짜
+		                		add += "<td>";
+		                		add += iData.regDt;
+		                		add += "</td>";
+                			add += "</tr>";
+                			
+                			$("#boartTable > thead").append(add);
+                		};//end for
                 		
-                		$("#boartTable > thead").append(add);
-                	}
+                	}//end if
                 	
                 }
             });
