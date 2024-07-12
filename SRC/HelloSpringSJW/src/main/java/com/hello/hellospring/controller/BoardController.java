@@ -75,6 +75,9 @@ public class BoardController {
 			totalCount = boardSerivce.selectBoardListCount(bean);
 			totalPage = (int)Math.ceil(totalCount / 10.0);
 			
+			int startOffset = ((bean.getPage() - 1) * 10); // 공식
+			bean.setPage(startOffset);
+			
 			list = boardSerivce.selecetBoardList(bean);
 			result = Constants.RESULT_VAL_OK;
 			resultMsg = "게시글 목록 조회에 성공 하였습니다.";
