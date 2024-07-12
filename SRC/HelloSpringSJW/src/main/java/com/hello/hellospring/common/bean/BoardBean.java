@@ -13,4 +13,7 @@ public class BoardBean {
 	private String memberNo;
 	private String regDt;
 	
+	private Integer page;
+	private String search;
+	
 }

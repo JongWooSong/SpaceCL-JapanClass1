@@ -29,4 +29,24 @@
 	</delete>
 	
 	
+	<select id="selectBoardList" parameterType="com.hello.hellospring.common.bean.BoardBean">
+		select 
+			board_no as boardNo
+			, title
+			, contents
+			, count
+			, secret_yn as secretYn 
+			, member_no as memberNo 
+			,(select name from member where member_no = b.member_no) memberName
+			, reg_dt as regDt
+		from 
+			board b 
+		where 
+			title like CONCAT('%', #{search}, '%') 
+			or contents like CONCAT('%', #{search}, '%')
+		order by board_no desc 
+		limit #{page}, 10
+	</select>
+	
+	
 </mapper>
