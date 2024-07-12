@@ -69,8 +69,12 @@ public class BoardController {
 		String resultMsg = "게시글 목록 조회에 실패 하였습니다.";
 		
 		List<BoardBean> list = null;
-		
+		int totalPage = 0;
+		int totalCount = 0;
 		try {
+			totalCount = boardSerivce.selectBoardListCount(bean);
+			totalPage = (int)Math.ceil(totalCount / 10.0);
+			
 			list = boardSerivce.selecetBoardList(bean);
 			result = Constants.RESULT_VAL_OK;
 			resultMsg = "게시글 목록 조회에 성공 하였습니다.";
@@ -79,6 +83,9 @@ public class BoardController {
 		}
 		
 		map.put(Constants.RESULT_KEY_DATA, list);
+		map.put("totalPage", totalPage);
+		map.put("totalCount", totalCount);
+		
 		map.put(Constants.RESULT_KEY, result);
 		map.put(Constants.RESULT_KEY_MSG, resultMsg);
 		return map;

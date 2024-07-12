@@ -51,5 +51,18 @@
 		limit #{page}, 10
 	</select>
 	
+	<select id="selectBoardListCount" parameterType="com.hello.hellospring.common.bean.BoardBean">
+		select 
+			count(*)
+		from 
+			board b 
+		where
+			1=1 
+		<if test="search != null and search != ''">
+				or title like CONCAT('%', #{search}, '%') 
+				or contents like CONCAT('%', #{search}, '%')
+		</if>
+	</select>
+	
 	
 </mapper>

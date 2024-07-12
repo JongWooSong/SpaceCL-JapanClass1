@@ -17,6 +17,9 @@ public interface BoardDao {
 	//여러건 조회
 	public List<BoardBean> selectBoardList(BoardBean bean);
 	
+	//전체 글의 갯수조회
+	public int selectBoardListCount(BoardBean bean);
+	
 	//1건 입력
 	public int insertBoard(BoardBean bean);
 	

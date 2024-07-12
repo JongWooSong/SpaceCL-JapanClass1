@@ -30,6 +30,11 @@ public class BoardService {
 	public BoardBean selectBoard(BoardBean bean) {
 		return boardDao.selectBoard(bean);
 	}
+	
+	//전체 글의 갯수조회
+	public int selectBoardListCount(BoardBean bean) {
+		return boardDao.selectBoardListCount(bean);
+	}
 
 	public List<BoardBean> selecetBoardList(BoardBean bean) {
 		return boardDao.selectBoardList(bean);
