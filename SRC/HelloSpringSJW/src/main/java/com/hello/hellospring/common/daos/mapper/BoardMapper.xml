@@ -4,6 +4,21 @@
 	
 <mapper namespace="com.hello.hellospring.common.daos.BoardDao">
 	
+	<insert id="insertBoard" parameterType="com.hello.hellospring.common.bean.BoardBean">
+		insert into board
+			(
+				title
+				,contents
+				, member_no
+			)
+		values
+			(
+				#{title}
+				,#{contents}
+				,#{memberNo}
+			)
+	</insert>
+	
 	<!-- 삭제 -->
 	<delete id="deleteBoardFromMemberNo" 
 		parameterType="com.hello.hellospring.common.bean.BoardBean">
