@@ -18,7 +18,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.addPathPatterns("/**") //모든 url 에 인터셉터를 걸겠다.
 			.excludePathPatterns("/getLoginToken")
 			.excludePathPatterns("/login/**")
-			.excludePathPatterns("/board/*Form*");
+			.excludePathPatterns("/board/*Form*")
+			.excludePathPatterns("/board/boardList.html");
 		
 	}
 	
